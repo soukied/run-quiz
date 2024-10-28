@@ -1,0 +1,111 @@
+[gd_scene load_steps=8 format=3 uid="uid://gmdo5kir6d8j"]
+
+[ext_resource type="Script" path="res://scripts/levelup_choice.gd" id="1_dywbf"]
+[ext_resource type="Theme" uid="uid://dgjnn6bjwnfq7" path="res://themes/default.tres" id="2_k1ffh"]
+[ext_resource type="Texture2D" uid="uid://c55s1238opurx" path="res://sprite/max_health.png" id="3_t2jig"]
+[ext_resource type="Texture2D" uid="uid://dwu7gkps7u3i5" path="res://sprite/coin_mult.png" id="4_p6udd"]
+[ext_resource type="Texture2D" uid="uid://b88oe6u2ocfsv" path="res://sprite/boots_wings.png" id="5_ojshi"]
+[ext_resource type="AudioStream" uid="uid://c8l1tmdb8137y" path="res://audio/itempick.wav" id="6_384te"]
+[ext_resource type="Texture2D" uid="uid://baq4rinvyni6p" path="res://sprite/coins.png" id="6_aed0n"]
+
+[node name="LevelupChoice" type="CanvasLayer"]
+process_mode = 3
+layer = 30
+script = ExtResource("1_dywbf")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.215686, 0.215686, 0.215686, 0.517647)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.00122, 1)
+theme = ExtResource("2_k1ffh")
+theme_override_constants/separation = 62
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 50
+text = "Pilih Item Untuk Naik Level"
+horizontal_alignment = 1
+
+[node name="ItemContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 143
+
+[node name="ItemSelect1" type="TextureButton" parent="VBoxContainer/ItemContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("3_t2jig")
+stretch_mode = 5
+
+[node name="ItemSelect2" type="TextureButton" parent="VBoxContainer/ItemContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("4_p6udd")
+stretch_mode = 5
+
+[node name="ItemSelect3" type="TextureButton" parent="VBoxContainer/ItemContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("5_ojshi")
+stretch_mode = 5
+
+[node name="BtnContainer" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(620, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 34
+alignment = 1
+
+[node name="QuizBtn" type="Button" parent="VBoxContainer/BtnContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_colors/font_disabled_color = Color(0.975449, 0.975449, 0.975448, 1)
+text = "Pilih Kuis"
+
+[node name="CoinTradeBtn" type="Button" parent="VBoxContainer/BtnContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_colors/font_disabled_color = Color(0.975449, 0.975449, 0.975448, 1)
+text = "Lewati Kuis
+(-5 Koin)"
+icon = ExtResource("6_aed0n")
+expand_icon = true
+
+[node name="ItemPickAudio" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_384te")
+volume_db = 5.438

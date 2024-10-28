@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=3 uid="uid://db1gpo4enr3pi"]
+
+[ext_resource type="Script" path="res://scripts/flag.gd" id="1_kpq5w"]
+[ext_resource type="Texture2D" uid="uid://djnf0c8chl2pk" path="res://sprite/flag.png" id="1_tvexb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jj2eu"]
+atlas = ExtResource("1_tvexb")
+region = Rect2(0, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1q4e1"]
+atlas = ExtResource("1_tvexb")
+region = Rect2(60, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_reyqg"]
+atlas = ExtResource("1_tvexb")
+region = Rect2(120, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jmsyu"]
+atlas = ExtResource("1_tvexb")
+region = Rect2(180, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ou5x"]
+atlas = ExtResource("1_tvexb")
+region = Rect2(240, 0, 60, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3at76"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jj2eu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1q4e1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_reyqg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jmsyu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ou5x")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_p1ejf"]
+distance = -16.0
+
+[node name="Flag" type="Node2D" groups=["entity"]]
+z_index = -4
+scale = Vector2(4, 4)
+script = ExtResource("1_kpq5w")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(8, -8)
+sprite_frames = SubResource("SpriteFrames_3at76")
+autoplay = "default"
+frame_progress = 0.397878
+
+[node name="Area" type="Area2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-16, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area"]
+position = Vector2(-8, -8)
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_p1ejf")
+
+[connection signal="area_entered" from="Area" to="." method="area_entered"]

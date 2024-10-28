@@ -1,0 +1,100 @@
+[gd_scene load_steps=14 format=3 uid="uid://bobv1nbw12oa5"]
+
+[ext_resource type="Texture2D" uid="uid://cg5noq6n7nuhr" path="res://sprite/wall.png" id="1_goqq1"]
+[ext_resource type="Script" path="res://scripts/runner_scene.gd" id="1_pyy1q"]
+[ext_resource type="PackedScene" uid="uid://g3qd6iwicq3h" path="res://scene/player.tscn" id="1_ui3cg"]
+[ext_resource type="Texture2D" uid="uid://3dp13viup51s" path="res://sprite/pillars.png" id="1_v3ivi"]
+[ext_resource type="PackedScene" uid="uid://ph6r6y4d18r5" path="res://scene/runner_ui.tscn" id="2_4y4e0"]
+[ext_resource type="Script" path="res://scripts/item_spawner.gd" id="2_ce5ei"]
+[ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="2_hw7oj"]
+[ext_resource type="Texture2D" uid="uid://daf4ovx40g7bm" path="res://sprite/bg.png" id="2_ol658"]
+[ext_resource type="Script" path="res://scripts/quiz_fetcher.gd" id="2_s03lq"]
+[ext_resource type="Texture2D" uid="uid://da0uojp4o1vlf" path="res://sprite/floor.png" id="3_vvhx8"]
+[ext_resource type="Script" path="res://scripts/timer.gd" id="5_s3yw3"]
+[ext_resource type="PackedScene" uid="uid://bpktlc2a8pgw1" path="res://scene/death_screen.tscn" id="10_lc5ac"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8p46n"]
+distance = -16.0
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_pyy1q")
+base_player_speed = 600.0
+fireball_speed = 300
+
+[node name="QuizFetcher" type="Node" parent="."]
+script = ExtResource("2_s03lq")
+
+[node name="ItemSpawner" type="Node" parent="."]
+script = ExtResource("2_ce5ei")
+spawn_interval = 40
+
+[node name="EnemySpawner" type="Node" parent="."]
+script = ExtResource("2_hw7oj")
+
+[node name="Timer" type="Node" parent="." groups=["timer"]]
+process_mode = 3
+script = ExtResource("5_s3yw3")
+
+[node name="Background" type="Node2D" parent="."]
+unique_name_in_owner = true
+show_behind_parent = true
+z_index = -4
+
+[node name="BG" type="Parallax2D" parent="Background"]
+repeat_size = Vector2(3840, 0)
+follow_viewport = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/BG"]
+texture_filter = 1
+texture = ExtResource("2_ol658")
+centered = false
+region_rect = Rect2(0, 0, 1920, 1080)
+
+[node name="Wall" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.8, 0.8)
+repeat_size = Vector2(3840, 0)
+follow_viewport = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Wall"]
+texture_filter = 1
+texture = ExtResource("1_goqq1")
+centered = false
+region_rect = Rect2(0, 0, 3840, 1080)
+
+[node name="Pillars" type="Parallax2D" parent="Background"]
+repeat_size = Vector2(3840, 0)
+follow_viewport = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Pillars"]
+texture_filter = 1
+texture = ExtResource("1_v3ivi")
+centered = false
+region_rect = Rect2(0, 0, 3840, 1080)
+
+[node name="Floor" type="Parallax2D" parent="Background"]
+repeat_size = Vector2(3840, 0)
+follow_viewport = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Floor"]
+texture_filter = 1
+texture = ExtResource("3_vvhx8")
+centered = false
+region_rect = Rect2(0, 0, 3840, 1080)
+
+[node name="Player" parent="." instance=ExtResource("1_ui3cg")]
+unique_name_in_owner = true
+position = Vector2(392, 664)
+gravity_enabled = true
+
+[node name="RunnerUI" parent="." instance=ExtResource("2_4y4e0")]
+
+[node name="DeathScreen" parent="." instance=ExtResource("10_lc5ac")]
+unique_name_in_owner = true
+visible = false
+
+[node name="Floor" type="StaticBody2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(360, 776)
+shape = SubResource("WorldBoundaryShape2D_8p46n")

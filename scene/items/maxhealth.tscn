@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://dl7hxubjxnsh4"]
+
+[ext_resource type="Script" path="res://scripts/item.gd" id="1_a3mhg"]
+[ext_resource type="Texture2D" uid="uid://c55s1238opurx" path="res://sprite/max_health.png" id="2_2rip2"]
+[ext_resource type="Script" path="res://scripts/items/maxhealth.gd" id="3_6w4l2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fqfjv"]
+radius = 10.5882
+
+[node name="MaxHealthItem" type="Node2D" groups=["entity", "item"]]
+z_index = -1
+scale = Vector2(4, 4)
+script = ExtResource("1_a3mhg")
+texture = ExtResource("2_2rip2")
+item_name = "+1 Maks. Darah"
+item_description = "Menambah 1 poin kapasitas maksimal darah."
+type = 1
+
+[node name="Sprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+texture = ExtResource("2_2rip2")
+
+[node name="Area2D" type="Area2D" parent="." groups=["item_area"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+shape = SubResource("CircleShape2D_fqfjv")
+
+[node name="Effect" type="Node" parent="."]
+script = ExtResource("3_6w4l2")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

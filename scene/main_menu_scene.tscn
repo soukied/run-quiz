@@ -1,0 +1,99 @@
+[gd_scene load_steps=7 format=3 uid="uid://beocf76x1d2pd"]
+
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_t6us4"]
+[ext_resource type="Shader" path="res://shaders/balatro_paint.gdshader" id="2_gidok"]
+[ext_resource type="Theme" uid="uid://dgjnn6bjwnfq7" path="res://themes/default.tres" id="2_kulom"]
+[ext_resource type="Theme" uid="uid://sabiea1hheuf" path="res://themes/rpg.tres" id="3_3egjl"]
+[ext_resource type="Texture2D" uid="uid://bfa2sqbwxcw7r" path="res://GameLogo.png" id="5_n241g"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dmoom"]
+shader = ExtResource("2_gidok")
+shader_parameter/polar_coordinates = false
+shader_parameter/polar_center = Vector2(0.5, 0.5)
+shader_parameter/polar_zoom = 1.0
+shader_parameter/polar_repeat = 1.0
+shader_parameter/spin_rotation = null
+shader_parameter/spin_speed = 14.0
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/colour_1 = Color(0.530824, 0.657745, 0.798652, 1)
+shader_parameter/colour_2 = null
+shader_parameter/colour_3 = Color(0, 0, 0, 1)
+shader_parameter/contrast = 1.0
+shader_parameter/spin_amount = 0.36
+shader_parameter/pixel_filter = 700.0
+
+[node name="MainMenuScene" type="Node2D"]
+script = ExtResource("1_t6us4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorMix" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_dmoom")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Buttons" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -334.5
+offset_top = -87.0
+offset_right = 334.5
+offset_bottom = 445.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_kulom")
+theme_override_constants/separation = 28
+alignment = 1
+
+[node name="StartGameBtn" type="Button" parent="CanvasLayer/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 112)
+layout_mode = 2
+theme = ExtResource("3_3egjl")
+theme_override_font_sizes/font_size = 70
+text = "Bermain"
+
+[node name="ScoreboardBtn" type="Button" parent="CanvasLayer/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 112)
+layout_mode = 2
+theme = ExtResource("3_3egjl")
+theme_override_font_sizes/font_size = 70
+text = "Papan Skor"
+
+[node name="GuideBtn" type="Button" parent="CanvasLayer/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 112)
+layout_mode = 2
+theme = ExtResource("3_3egjl")
+theme_override_font_sizes/font_size = 70
+text = "Panduan"
+
+[node name="About" type="Button" parent="CanvasLayer/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 112)
+layout_mode = 2
+theme = ExtResource("3_3egjl")
+theme_override_font_sizes/font_size = 70
+text = "Tentang"
+
+[node name="GameLogo" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -496.0
+offset_top = -438.0
+offset_right = 496.0
+offset_bottom = -134.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_n241g")
+stretch_mode = 5

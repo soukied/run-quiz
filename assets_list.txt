@@ -1,0 +1,19 @@
+# Sprite
+- Background [https://free-game-assets.itch.io/free-pixel-art-fantasy-game-battlegrounds]
+- Sword Slash [https://spikerman.itch.io/sword-slashes]
+- Necromancer [https://oco.itch.io/medieval-fantasy-character-pack-6]
+- Mushroom [https://caz-creates-games.itch.io/red-shroom]
+- Bat [https://pixelskeys.itch.io/bat-pixel-art-pack-free]
+- Red Flag [https://ankousse26.itch.io/free-flag-with-animation]
+- Coins [https://opengameart.org/content/gold-treasure-icons-16x16]
+
+# Fonts
+- Default Fonts [https://www.1001fonts.com/users/steffmann/]
+
+# Audio
+- Main Menu [https://www.free-stock-music.com/alex-productions-fantasy-world.html]
+- Correct Sound [Sound Effect from Pixabay]
+- Incorrect Sound [Sound Effect by UNIVERSFIELD from Pixabay]
+- Punch Sound [https://freesound.org/people/CGEffex/sounds/98341/]
+- Player Hurt / Jump [https://opengameart.org/content/playersounds-1-by-emopreben]
+- Item Pick [https://opengameart.org/content/3-item-sounds]

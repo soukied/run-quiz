@@ -1,0 +1,87 @@
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://sabiea1hheuf"]
+
+[ext_resource type="FontFile" uid="uid://b7n3striliwmu" path="res://fonts/morrisroman.ttf" id="1_ee32m"]
+[ext_resource type="Texture2D" uid="uid://dto3uu8otnvlc" path="res://sprite/uipack_rpg_vector.svg" id="1_k3nf1"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1ox1y"]
+texture = ExtResource("1_k3nf1")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+region_rect = Rect2(778, 1, 45, 49)
+modulate_color = Color(0.376505, 0.376505, 0.376504, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mdvjm"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nygfd"]
+texture = ExtResource("1_k3nf1")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+region_rect = Rect2(778, 1, 45, 49)
+modulate_color = Color(0.762404, 0.762404, 0.762404, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_141ph"]
+texture = ExtResource("1_k3nf1")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+region_rect = Rect2(778, 1, 45, 49)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vifdo"]
+texture = ExtResource("1_k3nf1")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+region_rect = Rect2(778, 1, 45, 49)
+modulate_color = Color(0.521141, 0.521141, 0.52114, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n0ugg"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gacck"]
+texture = ExtResource("1_k3nf1")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+region_rect = Rect2(110, 280, 100, 100)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v5l61"]
+texture = ExtResource("1_k3nf1")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+region_rect = Rect2(358, 61, 190, 49)
+
+[resource]
+Button/colors/font_color = Color(0, 0, 0, 0.67451)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/icon_normal_color = Color(0.664436, 0.542475, 0.362558, 1)
+Button/font_sizes/font_size = 40
+Button/fonts/font = ExtResource("1_ee32m")
+Button/styles/disabled = SubResource("StyleBoxTexture_1ox1y")
+Button/styles/focus = SubResource("StyleBoxEmpty_mdvjm")
+Button/styles/hover = SubResource("StyleBoxTexture_nygfd")
+Button/styles/normal = SubResource("StyleBoxTexture_141ph")
+Button/styles/pressed = SubResource("StyleBoxTexture_vifdo")
+Label/fonts/font = ExtResource("1_ee32m")
+LineEdit/styles/focus = SubResource("StyleBoxEmpty_n0ugg")
+LineEdit/styles/normal = SubResource("StyleBoxTexture_gacck")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_v5l61")

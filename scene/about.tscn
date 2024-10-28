@@ -1,0 +1,280 @@
+[gd_scene load_steps=11 format=3 uid="uid://b1pltvy3m4utw"]
+
+[ext_resource type="Shader" path="res://shaders/balatro_paint.gdshader" id="1_gaoyr"]
+[ext_resource type="Script" path="res://scripts/about.gd" id="1_jeruo"]
+[ext_resource type="Theme" uid="uid://sabiea1hheuf" path="res://themes/rpg.tres" id="2_571ua"]
+[ext_resource type="Texture2D" uid="uid://cdwbq05caudm2" path="res://sprite/vector_blackIcons.svg" id="3_808wn"]
+[ext_resource type="Texture2D" uid="uid://bfa2sqbwxcw7r" path="res://GameLogo.png" id="5_3bc7g"]
+[ext_resource type="FontFile" uid="uid://b7n3striliwmu" path="res://fonts/morrisroman.ttf" id="6_7ecfp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t1xwe"]
+shader = ExtResource("1_gaoyr")
+shader_parameter/polar_coordinates = false
+shader_parameter/polar_center = Vector2(0.5, 0.5)
+shader_parameter/polar_zoom = 1.0
+shader_parameter/polar_repeat = 1.0
+shader_parameter/spin_rotation = null
+shader_parameter/spin_speed = 14.0
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/colour_1 = Color(0.530824, 0.657745, 0.798652, 1)
+shader_parameter/colour_2 = null
+shader_parameter/colour_3 = Color(0, 0, 0, 1)
+shader_parameter/contrast = 1.0
+shader_parameter/spin_amount = 0.36
+shader_parameter/pixel_filter = 700.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5mrp4"]
+atlas = ExtResource("3_808wn")
+region = Rect2(704, 205, 31, 28)
+
+[sub_resource type="Gradient" id="Gradient_7w684"]
+offsets = PackedFloat32Array(0, 0.5, 0.991667)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8shai"]
+gradient = SubResource("Gradient_7w684")
+width = 100
+height = 100
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0.5)
+repeat = 2
+
+[node name="About" type="Node2D"]
+script = ExtResource("1_jeruo")
+
+[node name="Node" type="Node" parent="."]
+
+[node name="ColorMix" type="ColorRect" parent="Node"]
+material = SubResource("ShaderMaterial_t1xwe")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackBtn" type="Button" parent="Node"]
+offset_left = 75.0
+offset_top = 75.0
+offset_right = 175.0
+offset_bottom = 175.0
+theme = ExtResource("2_571ua")
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+theme_override_constants/icon_max_width = 52
+theme_override_font_sizes/font_size = 46
+text = "
+"
+icon = SubResource("AtlasTexture_5mrp4")
+icon_alignment = 1
+expand_icon = true
+
+[node name="PanelContainer" type="PanelContainer" parent="Node"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -712.0
+offset_top = -456.0
+offset_right = 712.0
+offset_bottom = 456.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_571ua")
+
+[node name="TextureRect" type="TextureRect" parent="Node/PanelContainer"]
+clip_children = 1
+layout_mode = 2
+texture = SubResource("GradientTexture2D_8shai")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Node/PanelContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Node/PanelContainer/TextureRect/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_top = 120
+theme_override_constants/margin_bottom = 120
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Node/PanelContainer/TextureRect/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="Node/PanelContainer/TextureRect/ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 190)
+layout_mode = 2
+texture = ExtResource("5_3bc7g")
+stretch_mode = 5
+
+[node name="RichTextLabel" type="Label" parent="Node/PanelContainer/TextureRect/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 39
+text = "oleh Adhya Adam Sulthan"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Node/PanelContainer/TextureRect/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 160
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 160
+
+[node name="Label" type="Label" parent="Node/PanelContainer/TextureRect/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(1084, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 0.803922)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.803922)
+theme_override_font_sizes/font_size = 43
+text = "Permainan endless runner dengan elemen kuis. Soal-soal yang diperoleh untuk kuis dihasilkan oleh Large Language Model GPT-3.5 Turbo milik OpenAI."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="Node/PanelContainer/TextureRect/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 160
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 160
+theme_override_constants/margin_bottom = 20
+
+[node name="Label" type="Label" parent="Node/PanelContainer/TextureRect/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(1084, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.0187587, 0.472448, 0.792157)
+theme_override_fonts/font = ExtResource("6_7ecfp")
+theme_override_font_sizes/font_size = 45
+text = "Kredit Aset"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="MarginContainer3" type="MarginContainer" parent="Node/PanelContainer/TextureRect/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="KreditAset" type="GridContainer" parent="Node/PanelContainer/TextureRect/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+theme_override_constants/v_separation = 20
+columns = 3
+
+[node name="Sprite" type="Label" parent="Node/PanelContainer/TextureRect/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer3/KreditAset"]
+custom_minimum_size = Vector2(466, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.488038, 0.985733, 0.479159, 1)
+theme_override_font_sizes/font_size = 35
+text = "Sprite"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Audio" type="Label" parent="Node/PanelContainer/TextureRect/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer3/KreditAset"]
+custom_minimum_size = Vector2(466, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.488038, 0.985733, 0.479159, 1)
+theme_override_font_sizes/font_size = 35
+text = "Audio/Musik
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Font" type="Label" parent="Node/PanelContainer/TextureRect/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer3/KreditAset"]
+custom_minimum_size = Vector2(466, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.488038, 0.985733, 0.479159, 1)
+theme_override_font_sizes/font_size = 35
+text = "Font"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="SpriteContent" type="Label" parent="Node/PanelContainer/TextureRect/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer3/KreditAset"]
+custom_minimum_size = Vector2(466, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Background 
+[https://free-game-assets.itch.io/free-
+pixel-art-fantasy-game-battlegrounds]
+
+Sword Slash 
+[https://spikerman.itch.io/sword-slashes]
+
+Necromancer 
+[https://oco.itch.io/medieval-fantasy-
+character-pack-6]
+
+Mushroom 
+[https://caz-creates-games.itch.io/red-
+shroom]
+
+Bat 
+[https://pixelskeys.itch.io/bat-pixel-art-
+pack-free]
+
+Red Flag 
+[https://ankousse26.itch.io/free-
+flag-with-animation]
+
+Coins 
+[https://opengameart.org/content/gold-
+treasure-icons-16x16]d"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="AudioContent" type="Label" parent="Node/PanelContainer/TextureRect/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer3/KreditAset"]
+custom_minimum_size = Vector2(466, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Main Menu 
+[https://www.free-stock-music.com/alex-
+productions-fantasy-world.html]
+
+Correct Sound 
+[Sound Effect from Pixabay]
+
+Incorrect Sound 
+[Sound Effect by UNIVERSFIELD from Pixabay]
+
+Punch Sound [https://freesound.org/people/
+CGEffex/sounds/98341/]
+
+Player Hurt / Jump 
+[https://opengameart.org/content/
+playersounds-1-by-emopreben]
+
+Item Pick 
+[https://opengameart.org/content/3-item-
+sounds]"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="FontContent" type="Label" parent="Node/PanelContainer/TextureRect/ScrollContainer/MarginContainer/VBoxContainer/MarginContainer3/KreditAset"]
+custom_minimum_size = Vector2(466, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Default Fonts 
+[https://www.1001fonts.com/users/
+steffmann/]
+"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[connection signal="pressed" from="Node/BackBtn" to="." method="back_to_menu"]

@@ -1,0 +1,2 @@
+- [v] Buat karakter bisa gerak dan loncat
+- [ ] buat musuh bisa spawn random 

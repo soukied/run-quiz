@@ -1,0 +1,127 @@
+[gd_scene load_steps=7 format=3 uid="uid://bncu88ad5genj"]
+
+[ext_resource type="Texture2D" uid="uid://dto3uu8otnvlc" path="res://sprite/uipack_rpg_vector.svg" id="1_fnmn7"]
+[ext_resource type="Script" path="res://scripts/saveboard.gd" id="1_qwvsb"]
+[ext_resource type="Theme" uid="uid://sabiea1hheuf" path="res://themes/rpg.tres" id="3_qf21q"]
+[ext_resource type="Texture2D" uid="uid://cdwbq05caudm2" path="res://sprite/vector_blackIcons.svg" id="4_p7jf5"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wxpjc"]
+texture = ExtResource("1_fnmn7")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+region_rect = Rect2(114, 502, 92, 94)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hq017"]
+atlas = ExtResource("4_p7jf5")
+region = Rect2(350, 145, 40, 44)
+
+[node name="Saveboard" type="PanelContainer"]
+custom_minimum_size = Vector2(1184, 228)
+layout_direction = 1
+offset_right = 1184.0
+offset_bottom = 168.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_wxpjc")
+script = ExtResource("1_qwvsb")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 17
+theme_override_constants/margin_right = 17
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Subject" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_qf21q")
+theme_override_colors/font_color = Color(0, 0, 0, 0.717647)
+theme_override_font_sizes/font_size = 40
+text = "Materi:"
+
+[node name="VBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Score" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_qf21q")
+theme_override_colors/font_color = Color(0, 0, 0, 0.717647)
+theme_override_font_sizes/font_size = 40
+text = "Score: "
+
+[node name="Level" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_qf21q")
+theme_override_colors/font_color = Color(0, 0, 0, 0.717647)
+theme_override_font_sizes/font_size = 40
+text = "Level: "
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="QuizCorrect" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_qf21q")
+theme_override_colors/font_color = Color(0, 0, 0, 0.717647)
+theme_override_font_sizes/font_size = 40
+text = "Jawab Benar: 0"
+
+[node name="QuizIncorrect" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_qf21q")
+theme_override_colors/font_color = Color(0, 0, 0, 0.717647)
+theme_override_font_sizes/font_size = 40
+text = "Jawab Salah: 0"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="QuizTotal" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_qf21q")
+theme_override_colors/font_color = Color(0, 0, 0, 0.717647)
+theme_override_font_sizes/font_size = 40
+text = "Total Jawab: 0"
+
+[node name="Time" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_qf21q")
+theme_override_colors/font_color = Color(0, 0, 0, 0.717647)
+theme_override_font_sizes/font_size = 40
+text = "Waktu: "
+
+[node name="TextureButton" type="Button" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+mouse_filter = 1
+theme = ExtResource("3_qf21q")
+icon = SubResource("AtlasTexture_hq017")
+icon_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/TextureButton" to="." method="remove_btn_pressed"]

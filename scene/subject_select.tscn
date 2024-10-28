@@ -1,0 +1,681 @@
+[gd_scene load_steps=15 format=3 uid="uid://bx0f1wdysrtrb"]
+
+[ext_resource type="Script" path="res://scripts/subject_select.gd" id="1_uy0me"]
+[ext_resource type="Shader" path="res://shaders/balatro_paint.gdshader" id="2_8iuuw"]
+[ext_resource type="Theme" uid="uid://sabiea1hheuf" path="res://themes/rpg.tres" id="2_p4bi1"]
+[ext_resource type="Texture2D" uid="uid://b6sfxfkrf2rc6" path="res://sprite/vector_whiteIcons.svg" id="4_4yhy3"]
+[ext_resource type="Script" path="res://scripts/virtual_btn.gd" id="4_oulcr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qlanj"]
+shader = ExtResource("2_8iuuw")
+shader_parameter/polar_coordinates = false
+shader_parameter/polar_center = Vector2(0.5, 0.5)
+shader_parameter/polar_zoom = 1.0
+shader_parameter/polar_repeat = 1.0
+shader_parameter/spin_rotation = null
+shader_parameter/spin_speed = 14.0
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/colour_1 = Color(0.530824, 0.657745, 0.798652, 1)
+shader_parameter/colour_2 = null
+shader_parameter/colour_3 = Color(0, 0, 0, 1)
+shader_parameter/contrast = 1.0
+shader_parameter/spin_amount = 0.36
+shader_parameter/pixel_filter = 700.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8txr0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hgmos"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mcme7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_grl6r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rrkx5"]
+atlas = ExtResource("4_4yhy3")
+region = Rect2(106, 0, 28, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p8r84"]
+atlas = ExtResource("4_4yhy3")
+region = Rect2(53, 3, 34, 28)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wenm0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0vk5"]
+atlas = ExtResource("4_4yhy3")
+region = Rect2(54, 103, 32, 29)
+
+[node name="SubjectSelect" type="Node2D"]
+script = ExtResource("1_uy0me")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorMix" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_qlanj")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -506.0
+offset_top = -266.0
+offset_right = 506.0
+offset_bottom = 266.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_p4bi1")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 65
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 0.529412)
+theme_override_font_sizes/font_size = 52
+text = "Masukkan topik atau materi kuis"
+horizontal_alignment = 1
+
+[node name="SubjectInput" type="LineEdit" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/caret_color = Color(0, 0, 0, 0.780392)
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 0.494118)
+theme_override_colors/font_color = Color(0, 0, 0, 0.780392)
+theme_override_font_sizes/font_size = 29
+placeholder_text = "Pengetajuan Umum"
+virtual_keyboard_enabled = false
+caret_blink = true
+caret_force_displayed = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 40
+
+[node name="BackBtn" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(239, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 48
+text = "Kembali"
+
+[node name="PlayBtn" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(239, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 48
+text = "Bermain"
+
+[node name="HeightLabel" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 57
+text = "0"
+horizontal_alignment = 2
+
+[node name="KeyboardPanel" type="Panel" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 640)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/KeyboardPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="KeyRow" type="VBoxContainer" parent="CanvasLayer/KeyboardPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="KeyCol1" type="HBoxContainer" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 17
+alignment = 1
+
+[node name="Button1" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol1" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(173, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 46
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8txr0")
+text = "1"
+script = ExtResource("4_oulcr")
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="Button2" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol1" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(173, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 46
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8txr0")
+text = "2"
+script = ExtResource("4_oulcr")
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="Button3" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol1" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(173, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 46
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8txr0")
+text = "3"
+script = ExtResource("4_oulcr")
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="Button4" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol1" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(173, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 46
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8txr0")
+text = "4"
+script = ExtResource("4_oulcr")
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="Button5" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol1" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(173, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 46
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8txr0")
+text = "5"
+script = ExtResource("4_oulcr")
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="Button6" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol1" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(173, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 46
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8txr0")
+text = "6"
+script = ExtResource("4_oulcr")
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="Button7" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol1" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(173, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 46
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8txr0")
+text = "7"
+script = ExtResource("4_oulcr")
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="Button8" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol1" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(173, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 46
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8txr0")
+text = "8"
+script = ExtResource("4_oulcr")
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="Button9" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol1" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(173, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 46
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8txr0")
+text = "9"
+script = ExtResource("4_oulcr")
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="Button0" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol1" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(173, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 46
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8txr0")
+text = "0
+"
+script = ExtResource("4_oulcr")
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="KeyCol2" type="HBoxContainer" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_constants/separation = 17
+
+[node name="ButtonQ" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol2" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(173, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 52
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hgmos")
+text = "Q"
+script = ExtResource("4_oulcr")
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="ButtonW" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol2" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(173, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 52
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hgmos")
+text = "W"
+script = ExtResource("4_oulcr")
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="ButtonE" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol2" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(173, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 52
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hgmos")
+text = "E
+"
+script = ExtResource("4_oulcr")
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="ButtonR" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol2" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(173, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 52
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hgmos")
+text = "R"
+script = ExtResource("4_oulcr")
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="ButtonT" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol2" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(173, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 52
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hgmos")
+text = "T"
+script = ExtResource("4_oulcr")
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="ButtonY" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol2" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(173, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 52
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hgmos")
+text = "Y"
+script = ExtResource("4_oulcr")
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="ButtonU" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol2" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(173, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 52
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hgmos")
+text = "U"
+script = ExtResource("4_oulcr")
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="ButtonI" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol2" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(173, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 52
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hgmos")
+text = "I"
+script = ExtResource("4_oulcr")
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="ButtonO" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol2" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(173, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 52
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hgmos")
+text = "O"
+script = ExtResource("4_oulcr")
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="ButtonP" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol2" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(173, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 52
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hgmos")
+text = "P"
+script = ExtResource("4_oulcr")
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="KeyCol3" type="HBoxContainer" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 17
+alignment = 1
+
+[node name="ButtonA" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol3" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(173, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 52
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mcme7")
+text = "A
+"
+script = ExtResource("4_oulcr")
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="ButtonS" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol3" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(173, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 52
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mcme7")
+text = "S"
+script = ExtResource("4_oulcr")
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="ButtonD" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol3" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(173, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 52
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mcme7")
+text = "D
+"
+script = ExtResource("4_oulcr")
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="ButtonF" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol3" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(173, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 52
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mcme7")
+text = "F"
+script = ExtResource("4_oulcr")
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="ButtonG" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol3" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(168, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 52
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mcme7")
+text = "G"
+script = ExtResource("4_oulcr")
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="ButtonH" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol3" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(168, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 52
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mcme7")
+text = "H"
+script = ExtResource("4_oulcr")
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="ButtonJ" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol3" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(168, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 52
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mcme7")
+text = "J"
+script = ExtResource("4_oulcr")
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="ButtonK" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol3" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(173, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 52
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mcme7")
+text = "K"
+script = ExtResource("4_oulcr")
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="ButtonL" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol3" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(173, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 52
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mcme7")
+text = "L"
+script = ExtResource("4_oulcr")
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="KeyCol4" type="HBoxContainer" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 17
+alignment = 1
+
+[node name="ButtonShift" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol4" node_paths=PackedStringArray("line_edit")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(260, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 52
+theme_override_styles/focus = SubResource("StyleBoxEmpty_grl6r")
+icon = SubResource("AtlasTexture_rrkx5")
+icon_alignment = 1
+script = ExtResource("4_oulcr")
+button_type = 4
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="ButtonZ" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol4" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(173, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 52
+theme_override_styles/focus = SubResource("StyleBoxEmpty_grl6r")
+text = "Z"
+script = ExtResource("4_oulcr")
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="ButtonX" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol4" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(173, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 52
+theme_override_styles/focus = SubResource("StyleBoxEmpty_grl6r")
+text = "X"
+script = ExtResource("4_oulcr")
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="ButtonC" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol4" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(173, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 52
+theme_override_styles/focus = SubResource("StyleBoxEmpty_grl6r")
+text = "C"
+script = ExtResource("4_oulcr")
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="ButtonV" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol4" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(173, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 52
+theme_override_styles/focus = SubResource("StyleBoxEmpty_grl6r")
+text = "V"
+script = ExtResource("4_oulcr")
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="ButtonB" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol4" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(173, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 52
+theme_override_styles/focus = SubResource("StyleBoxEmpty_grl6r")
+text = "B"
+script = ExtResource("4_oulcr")
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="ButtonM" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol4" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(173, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 52
+theme_override_styles/focus = SubResource("StyleBoxEmpty_grl6r")
+text = "N"
+script = ExtResource("4_oulcr")
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="Button7" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol4" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(173, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 52
+theme_override_styles/focus = SubResource("StyleBoxEmpty_grl6r")
+text = "M"
+script = ExtResource("4_oulcr")
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="ButtonBackspace" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol4" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(260, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 52
+theme_override_styles/focus = SubResource("StyleBoxEmpty_grl6r")
+icon = SubResource("AtlasTexture_p8r84")
+icon_alignment = 1
+script = ExtResource("4_oulcr")
+button_type = 2
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="KeyCol5" type="HBoxContainer" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 17
+alignment = 1
+
+[node name="ButtonQuote2" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol5" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(173, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 52
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mcme7")
+text = "\""
+script = ExtResource("4_oulcr")
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="ButtonComa" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol5" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(173, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 52
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wenm0")
+text = ","
+script = ExtResource("4_oulcr")
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="ButtonSpace" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol5" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(643, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 52
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wenm0")
+text = " "
+script = ExtResource("4_oulcr")
+button_type = 1
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="ButtonPeriod" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol5" node_paths=PackedStringArray("line_edit")]
+custom_minimum_size = Vector2(173, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 52
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wenm0")
+text = "."
+script = ExtResource("4_oulcr")
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[node name="ButtonDone" type="Button" parent="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol5" node_paths=PackedStringArray("line_edit")]
+texture_filter = 1
+custom_minimum_size = Vector2(173, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 52
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wenm0")
+icon = SubResource("AtlasTexture_h0vk5")
+icon_alignment = 1
+script = ExtResource("4_oulcr")
+button_type = 3
+line_edit = NodePath("../../../../../PanelContainer/MarginContainer/VBoxContainer/SubjectInput")
+
+[connection signal="focus_entered" from="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/SubjectInput" to="." method="show_virtkey"]
+[connection signal="close_virtkey" from="CanvasLayer/KeyboardPanel/MarginContainer/KeyRow/KeyCol5/ButtonDone" to="." method="close_virtkey"]

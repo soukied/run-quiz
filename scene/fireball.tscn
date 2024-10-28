@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://bsm3vfm2ximc8"]
+
+[ext_resource type="Script" path="res://scripts/fireball.gd" id="1_6raxe"]
+[ext_resource type="Texture2D" uid="uid://duv865imox0ck" path="res://sprite/fireball.png" id="1_fod67"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0od4a"]
+atlas = ExtResource("1_fod67")
+region = Rect2(0, 12, 7, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjgvp"]
+atlas = ExtResource("1_fod67")
+region = Rect2(0, 24, 7, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ekf8y"]
+atlas = ExtResource("1_fod67")
+region = Rect2(0, 36, 7, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wjv5s"]
+atlas = ExtResource("1_fod67")
+region = Rect2(0, 48, 7, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gi0hm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0od4a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xjgvp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ekf8y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wjv5s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 14.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_adgtm"]
+radius = 3.0
+height = 13.9979
+
+[node name="Fireball" type="Node2D" groups=["fireball"]]
+z_index = -1
+scale = Vector2(8, 8)
+script = ExtResource("1_6raxe")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+rotation = -1.5708
+sprite_frames = SubResource("SpriteFrames_gi0hm")
+autoplay = "default"
+frame_progress = 0.519938
+
+[node name="Area" type="Area2D" parent="." groups=["fireball_area"]]
+
+[node name="Collision" type="CollisionShape2D" parent="Area"]
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_adgtm")
+
+[connection signal="area_entered" from="Area" to="." method="area_entered"]

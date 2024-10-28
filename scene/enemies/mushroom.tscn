@@ -1,0 +1,110 @@
+[gd_scene load_steps=13 format=3 uid="uid://be4tauoudqui7"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_xx6dk"]
+[ext_resource type="Shader" uid="uid://dmknu5jcr70ys" path="res://effects/color_tint.res" id="2_mobm0"]
+[ext_resource type="Texture2D" uid="uid://1vpv51xsnr3u" path="res://sprite/mushroom-idle.png" id="2_qxt0n"]
+[ext_resource type="Script" path="res://scripts/enemies/mushroom.gd" id="3_l224a"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jgtw5"]
+resource_local_to_scene = true
+shader = ExtResource("2_mobm0")
+shader_parameter/enabled = false
+shader_parameter/color = Color(1, 1, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rw6jb"]
+atlas = ExtResource("2_qxt0n")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4sct8"]
+atlas = ExtResource("2_qxt0n")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2fm1o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rw6jb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4sct8")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}]
+
+[sub_resource type="Animation" id="Animation_v7roh"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_xecqe"]
+resource_name = "blink"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o0qb4"]
+_data = {
+"RESET": SubResource("Animation_v7roh"),
+"blink": SubResource("Animation_xecqe")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tvtgq"]
+radius = 14.0351
+height = 30.8772
+
+[node name="MushroomEnemy" type="Node2D" groups=["enemy", "entity"]]
+z_index = -1
+position = Vector2(856, 520)
+scale = Vector2(5.7, 5.7)
+script = ExtResource("1_xx6dk")
+enemy_type = 2
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_jgtw5")
+sprite_frames = SubResource("SpriteFrames_2fm1o")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.46982
+flip_h = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_o0qb4")
+}
+
+[node name="Area" type="Area2D" parent="." groups=["enemy_area"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area"]
+position = Vector2(-2.86102e-06, 5.61404)
+shape = SubResource("CapsuleShape2D_tvtgq")
+
+[node name="Mushroom" type="Node" parent="."]
+script = ExtResource("3_l224a")
+
+[connection signal="area_entered" from="Area" to="." method="on_area_entered"]
+[connection signal="area_exited" from="Area" to="." method="on_area_exited"]

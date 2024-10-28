@@ -1,0 +1,94 @@
+[gd_scene load_steps=16 format=3 uid="uid://bobv1nbw12oa5"]
+
+[ext_resource type="Texture2D" uid="uid://cg5noq6n7nuhr" path="res://sprite/wall.png" id="1_goqq1"]
+[ext_resource type="Script" path="res://scripts/runner_scene.gd" id="1_pyy1q"]
+[ext_resource type="PackedScene" uid="uid://g3qd6iwicq3h" path="res://scene/player.tscn" id="1_ui3cg"]
+[ext_resource type="Texture2D" uid="uid://3dp13viup51s" path="res://sprite/pillars.png" id="1_v3ivi"]
+[ext_resource type="PackedScene" uid="uid://ph6r6y4d18r5" path="res://scene/runner_ui.tscn" id="2_4y4e0"]
+[ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="2_hw7oj"]
+[ext_resource type="Texture2D" uid="uid://daf4ovx40g7bm" path="res://sprite/bg.png" id="2_ol658"]
+[ext_resource type="Texture2D" uid="uid://da0uojp4o1vlf" path="res://sprite/floor.png" id="3_vvhx8"]
+[ext_resource type="PackedScene" uid="uid://csqwnessvtnqb" path="res://scene/item.tscn" id="3_wmgfk"]
+[ext_resource type="Texture2D" uid="uid://dpqmjq3gi4efd" path="res://sprite/Sheet.png" id="4_rnyvu"]
+[ext_resource type="PackedScene" uid="uid://bb5vj07qllcwd" path="res://scene/necromancer.tscn" id="10_eif7h"]
+[ext_resource type="PackedScene" uid="uid://be4tauoudqui7" path="res://scene/mushroom.tscn" id="12_w4pbm"]
+[ext_resource type="PackedScene" uid="uid://ryhsief5jvoj" path="res://scene/spike.tscn" id="13_jkvcq"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8p46n"]
+distance = -16.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_althk"]
+atlas = ExtResource("4_rnyvu")
+region = Rect2(48, 31, 16, 17)
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_pyy1q")
+player_speed = 500
+
+[node name="ItemSpawner" type="Node" parent="."]
+
+[node name="EnemySpawner" type="Node" parent="."]
+script = ExtResource("2_hw7oj")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+unique_name_in_owner = true
+
+[node name="BG" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/BG"]
+texture_filter = 1
+texture = ExtResource("2_ol658")
+centered = false
+
+[node name="Wall" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.8, 0.8)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Wall"]
+texture_filter = 1
+texture = ExtResource("1_goqq1")
+centered = false
+
+[node name="Pillars" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Pillars"]
+texture_filter = 1
+texture = ExtResource("1_v3ivi")
+centered = false
+
+[node name="Floor" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Floor"]
+texture_filter = 1
+texture = ExtResource("3_vvhx8")
+centered = false
+
+[node name="Player" parent="." instance=ExtResource("1_ui3cg")]
+unique_name_in_owner = true
+position = Vector2(392, 664)
+gravity_enabled = true
+
+[node name="RunnerUI" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_4y4e0")]
+player = NodePath("../Player")
+
+[node name="Floor" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(360, 776)
+shape = SubResource("WorldBoundaryShape2D_8p46n")
+
+[node name="Necromancer" parent="." instance=ExtResource("10_eif7h")]
+position = Vector2(1784, 696)
+
+[node name="Item" parent="." instance=ExtResource("3_wmgfk")]
+position = Vector2(1248, 624)
+texture_arrow = SubResource("AtlasTexture_althk")
+
+[node name="Enemy" parent="." instance=ExtResource("12_w4pbm")]
+position = Vector2(2664, 696)
+
+[node name="Enemy2" parent="." instance=ExtResource("13_jkvcq")]
+position = Vector2(584, 768)

@@ -1,0 +1,103 @@
+[gd_scene load_steps=6 format=3 uid="uid://cprgceg8fprpx"]
+
+[ext_resource type="Script" path="res://scripts/prompt.gd" id="1_v8f56"]
+[ext_resource type="Theme" uid="uid://sabiea1hheuf" path="res://themes/rpg.tres" id="2_hb7ld"]
+[ext_resource type="Texture2D" uid="uid://cdwbq05caudm2" path="res://sprite/vector_blackIcons.svg" id="3_xck70"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qn2j4"]
+atlas = ExtResource("3_xck70")
+region = Rect2(104, 102, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qnetx"]
+atlas = ExtResource("3_xck70")
+region = Rect2(54, 103, 32, 29)
+
+[node name="Alert" type="CanvasLayer"]
+process_mode = 3
+layer = 10
+script = ExtResource("1_v8f56")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.215686, 0.215686, 0.215686, 0.517647)
+
+[node name="PromptContainer" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -435.0
+offset_top = -152.0
+offset_right = 435.0
+offset_bottom = 152.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("2_hb7ld")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PromptContainer"]
+layout_mode = 2
+
+[node name="Control" type="MarginContainer" parent="PromptContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_bottom = 32
+
+[node name="PromptText" type="Label" parent="PromptContainer/VBoxContainer/Control"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(850, 229)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 0.647059)
+theme_override_font_sizes/font_size = 39
+text = "Lorem ipsum dolor sit amat, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Control2" type="HBoxContainer" parent="PromptContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 400
+alignment = 1
+
+[node name="BtnAnchor1" type="Control" parent="PromptContainer/VBoxContainer/Control2"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Node" type="Node2D" parent="PromptContainer/VBoxContainer/Control2/BtnAnchor1"]
+
+[node name="CloseButton" type="Button" parent="PromptContainer/VBoxContainer/Control2/BtnAnchor1/Node"]
+offset_left = -72.0
+offset_top = -31.0
+offset_right = 72.0
+offset_bottom = 31.0
+focus_mode = 0
+theme = ExtResource("2_hb7ld")
+icon = SubResource("AtlasTexture_qn2j4")
+icon_alignment = 1
+
+[node name="BtnAnchor2" type="Control" parent="PromptContainer/VBoxContainer/Control2"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Node" type="Node2D" parent="PromptContainer/VBoxContainer/Control2/BtnAnchor2"]
+
+[node name="ConfirmButton" type="Button" parent="PromptContainer/VBoxContainer/Control2/BtnAnchor2/Node"]
+offset_left = -72.0
+offset_top = -31.0
+offset_right = 72.0
+offset_bottom = 31.0
+focus_mode = 0
+theme = ExtResource("2_hb7ld")
+icon = SubResource("AtlasTexture_qnetx")
+icon_alignment = 1
+
+[connection signal="pressed" from="PromptContainer/VBoxContainer/Control2/BtnAnchor1/Node/CloseButton" to="." method="close_pressed"]
+[connection signal="pressed" from="PromptContainer/VBoxContainer/Control2/BtnAnchor2/Node/ConfirmButton" to="." method="confirm_pressed"]

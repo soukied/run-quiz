@@ -1,0 +1,864 @@
+[gd_scene load_steps=38 format=3 uid="uid://cj31ad7psgbpb"]
+
+[ext_resource type="Shader" path="res://shaders/balatro_paint.gdshader" id="1_8hbw5"]
+[ext_resource type="Script" path="res://scripts/guide_scene.gd" id="1_hmhar"]
+[ext_resource type="Script" path="res://scripts/guide.gd" id="2_eq1t4"]
+[ext_resource type="Theme" uid="uid://sabiea1hheuf" path="res://themes/rpg.tres" id="2_vy27b"]
+[ext_resource type="Texture2D" uid="uid://bfa2sqbwxcw7r" path="res://GameLogo.png" id="3_lgatg"]
+[ext_resource type="Texture2D" uid="uid://cdwbq05caudm2" path="res://sprite/vector_blackIcons.svg" id="4_802gf"]
+[ext_resource type="Texture2D" uid="uid://cafxgemkmuloh" path="res://guide_images/input_materi.png" id="4_pajtw"]
+[ext_resource type="Texture2D" uid="uid://c2aabapfvubkh" path="res://guide_images/mulai_bermain.png" id="4_uhfiq"]
+[ext_resource type="Texture2D" uid="uid://df42i1hl0dbhq" path="res://guide_images/player_control.png" id="6_xkfdf"]
+[ext_resource type="Texture2D" uid="uid://dto3uu8otnvlc" path="res://sprite/uipack_rpg_vector.svg" id="7_h1cd8"]
+[ext_resource type="Texture2D" uid="uid://r3h0npi1vser" path="res://guide_images/player_stats.png" id="7_wy4uv"]
+[ext_resource type="Texture2D" uid="uid://cs4sv0rpextc5" path="res://guide_images/effects_stat.png" id="8_jj2li"]
+[ext_resource type="Texture2D" uid="uid://bqxterv7pm127" path="res://guide_images/time_stat.png" id="9_r7rno"]
+[ext_resource type="Texture2D" uid="uid://dpqmjq3gi4efd" path="res://sprite/Sheet.png" id="10_5o6dy"]
+[ext_resource type="Texture2D" uid="uid://b8ksus1hhgq6a" path="res://guide_images/bendera.png" id="10_sgd8c"]
+[ext_resource type="Texture2D" uid="uid://bsdl5ld7qrnwp" path="res://guide_images/memilih_item.png" id="10_wtonq"]
+[ext_resource type="Texture2D" uid="uid://c55s1238opurx" path="res://sprite/max_health.png" id="11_abo01"]
+[ext_resource type="Texture2D" uid="uid://8e0kfholi4t5" path="res://guide_images/musuh_jamur.png" id="11_ig8o3"]
+[ext_resource type="Texture2D" uid="uid://be2youpl0k83r" path="res://guide_images/menjawab_kuis.png" id="12_agyml"]
+[ext_resource type="Texture2D" uid="uid://chn3wlt3vdcph" path="res://guide_images/penyihir.png" id="12_bsqbp"]
+[ext_resource type="Texture2D" uid="uid://dwu7gkps7u3i5" path="res://sprite/coin_mult.png" id="12_h24u8"]
+[ext_resource type="Texture2D" uid="uid://cln0xe5rb5u6q" path="res://guide_images/musuh_jarum.png" id="12_p50ky"]
+[ext_resource type="Texture2D" uid="uid://b88oe6u2ocfsv" path="res://sprite/boots_wings.png" id="13_krip2"]
+[ext_resource type="Texture2D" uid="uid://cuu7e2kesimsn" path="res://guide_images/kelelawar.png" id="14_pgw3i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cnatc"]
+atlas = ExtResource("10_5o6dy")
+region = Rect2(80, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbsf4"]
+atlas = ExtResource("10_5o6dy")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_abc03"]
+shader = ExtResource("1_8hbw5")
+shader_parameter/polar_coordinates = false
+shader_parameter/polar_center = Vector2(0.5, 0.5)
+shader_parameter/polar_zoom = 1.0
+shader_parameter/polar_repeat = 1.0
+shader_parameter/spin_rotation = null
+shader_parameter/spin_speed = 14.0
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/colour_1 = Color(0.530824, 0.657745, 0.798652, 1)
+shader_parameter/colour_2 = null
+shader_parameter/colour_3 = Color(0, 0, 0, 1)
+shader_parameter/contrast = 1.0
+shader_parameter/spin_amount = 0.36
+shader_parameter/pixel_filter = 700.0
+
+[sub_resource type="FontFile" id="FontFile_efhyw"]
+cache/0/48/0/ascent = 0.0
+cache/0/48/0/descent = 0.0
+cache/0/48/0/underline_position = 0.0
+cache/0/48/0/underline_thickness = 0.0
+cache/0/48/0/scale = 1.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/2/0/ascent = 0.0
+cache/0/2/0/descent = 0.0
+cache/0/2/0/underline_position = 0.0
+cache/0/2/0/underline_thickness = 0.0
+cache/0/2/0/scale = 1.0
+cache/0/3/0/ascent = 0.0
+cache/0/3/0/descent = 0.0
+cache/0/3/0/underline_position = 0.0
+cache/0/3/0/underline_thickness = 0.0
+cache/0/3/0/scale = 1.0
+cache/0/4/0/ascent = 0.0
+cache/0/4/0/descent = 0.0
+cache/0/4/0/underline_position = 0.0
+cache/0/4/0/underline_thickness = 0.0
+cache/0/4/0/scale = 1.0
+cache/0/5/0/ascent = 0.0
+cache/0/5/0/descent = 0.0
+cache/0/5/0/underline_position = 0.0
+cache/0/5/0/underline_thickness = 0.0
+cache/0/5/0/scale = 1.0
+cache/0/6/0/ascent = 0.0
+cache/0/6/0/descent = 0.0
+cache/0/6/0/underline_position = 0.0
+cache/0/6/0/underline_thickness = 0.0
+cache/0/6/0/scale = 1.0
+cache/0/7/0/ascent = 0.0
+cache/0/7/0/descent = 0.0
+cache/0/7/0/underline_position = 0.0
+cache/0/7/0/underline_thickness = 0.0
+cache/0/7/0/scale = 1.0
+cache/0/8/0/ascent = 0.0
+cache/0/8/0/descent = 0.0
+cache/0/8/0/underline_position = 0.0
+cache/0/8/0/underline_thickness = 0.0
+cache/0/8/0/scale = 1.0
+cache/0/9/0/ascent = 0.0
+cache/0/9/0/descent = 0.0
+cache/0/9/0/underline_position = 0.0
+cache/0/9/0/underline_thickness = 0.0
+cache/0/9/0/scale = 1.0
+cache/0/10/0/ascent = 0.0
+cache/0/10/0/descent = 0.0
+cache/0/10/0/underline_position = 0.0
+cache/0/10/0/underline_thickness = 0.0
+cache/0/10/0/scale = 1.0
+cache/0/11/0/ascent = 0.0
+cache/0/11/0/descent = 0.0
+cache/0/11/0/underline_position = 0.0
+cache/0/11/0/underline_thickness = 0.0
+cache/0/11/0/scale = 1.0
+cache/0/12/0/ascent = 0.0
+cache/0/12/0/descent = 0.0
+cache/0/12/0/underline_position = 0.0
+cache/0/12/0/underline_thickness = 0.0
+cache/0/12/0/scale = 1.0
+cache/0/13/0/ascent = 0.0
+cache/0/13/0/descent = 0.0
+cache/0/13/0/underline_position = 0.0
+cache/0/13/0/underline_thickness = 0.0
+cache/0/13/0/scale = 1.0
+cache/0/14/0/ascent = 0.0
+cache/0/14/0/descent = 0.0
+cache/0/14/0/underline_position = 0.0
+cache/0/14/0/underline_thickness = 0.0
+cache/0/14/0/scale = 1.0
+cache/0/15/0/ascent = 0.0
+cache/0/15/0/descent = 0.0
+cache/0/15/0/underline_position = 0.0
+cache/0/15/0/underline_thickness = 0.0
+cache/0/15/0/scale = 1.0
+cache/0/17/0/ascent = 0.0
+cache/0/17/0/descent = 0.0
+cache/0/17/0/underline_position = 0.0
+cache/0/17/0/underline_thickness = 0.0
+cache/0/17/0/scale = 1.0
+cache/0/18/0/ascent = 0.0
+cache/0/18/0/descent = 0.0
+cache/0/18/0/underline_position = 0.0
+cache/0/18/0/underline_thickness = 0.0
+cache/0/18/0/scale = 1.0
+cache/0/19/0/ascent = 0.0
+cache/0/19/0/descent = 0.0
+cache/0/19/0/underline_position = 0.0
+cache/0/19/0/underline_thickness = 0.0
+cache/0/19/0/scale = 1.0
+cache/0/20/0/ascent = 0.0
+cache/0/20/0/descent = 0.0
+cache/0/20/0/underline_position = 0.0
+cache/0/20/0/underline_thickness = 0.0
+cache/0/20/0/scale = 1.0
+cache/0/21/0/ascent = 0.0
+cache/0/21/0/descent = 0.0
+cache/0/21/0/underline_position = 0.0
+cache/0/21/0/underline_thickness = 0.0
+cache/0/21/0/scale = 1.0
+cache/0/22/0/ascent = 0.0
+cache/0/22/0/descent = 0.0
+cache/0/22/0/underline_position = 0.0
+cache/0/22/0/underline_thickness = 0.0
+cache/0/22/0/scale = 1.0
+cache/0/23/0/ascent = 0.0
+cache/0/23/0/descent = 0.0
+cache/0/23/0/underline_position = 0.0
+cache/0/23/0/underline_thickness = 0.0
+cache/0/23/0/scale = 1.0
+cache/0/24/0/ascent = 0.0
+cache/0/24/0/descent = 0.0
+cache/0/24/0/underline_position = 0.0
+cache/0/24/0/underline_thickness = 0.0
+cache/0/24/0/scale = 1.0
+cache/0/25/0/ascent = 0.0
+cache/0/25/0/descent = 0.0
+cache/0/25/0/underline_position = 0.0
+cache/0/25/0/underline_thickness = 0.0
+cache/0/25/0/scale = 1.0
+cache/0/26/0/ascent = 0.0
+cache/0/26/0/descent = 0.0
+cache/0/26/0/underline_position = 0.0
+cache/0/26/0/underline_thickness = 0.0
+cache/0/26/0/scale = 1.0
+cache/0/27/0/ascent = 0.0
+cache/0/27/0/descent = 0.0
+cache/0/27/0/underline_position = 0.0
+cache/0/27/0/underline_thickness = 0.0
+cache/0/27/0/scale = 1.0
+cache/0/28/0/ascent = 0.0
+cache/0/28/0/descent = 0.0
+cache/0/28/0/underline_position = 0.0
+cache/0/28/0/underline_thickness = 0.0
+cache/0/28/0/scale = 1.0
+cache/0/29/0/ascent = 0.0
+cache/0/29/0/descent = 0.0
+cache/0/29/0/underline_position = 0.0
+cache/0/29/0/underline_thickness = 0.0
+cache/0/29/0/scale = 1.0
+cache/0/30/0/ascent = 0.0
+cache/0/30/0/descent = 0.0
+cache/0/30/0/underline_position = 0.0
+cache/0/30/0/underline_thickness = 0.0
+cache/0/30/0/scale = 1.0
+cache/0/31/0/ascent = 0.0
+cache/0/31/0/descent = 0.0
+cache/0/31/0/underline_position = 0.0
+cache/0/31/0/underline_thickness = 0.0
+cache/0/31/0/scale = 1.0
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+cache/0/33/0/ascent = 0.0
+cache/0/33/0/descent = 0.0
+cache/0/33/0/underline_position = 0.0
+cache/0/33/0/underline_thickness = 0.0
+cache/0/33/0/scale = 1.0
+cache/0/34/0/ascent = 0.0
+cache/0/34/0/descent = 0.0
+cache/0/34/0/underline_position = 0.0
+cache/0/34/0/underline_thickness = 0.0
+cache/0/34/0/scale = 1.0
+cache/0/35/0/ascent = 0.0
+cache/0/35/0/descent = 0.0
+cache/0/35/0/underline_position = 0.0
+cache/0/35/0/underline_thickness = 0.0
+cache/0/35/0/scale = 1.0
+cache/0/36/0/ascent = 0.0
+cache/0/36/0/descent = 0.0
+cache/0/36/0/underline_position = 0.0
+cache/0/36/0/underline_thickness = 0.0
+cache/0/36/0/scale = 1.0
+cache/0/37/0/ascent = 0.0
+cache/0/37/0/descent = 0.0
+cache/0/37/0/underline_position = 0.0
+cache/0/37/0/underline_thickness = 0.0
+cache/0/37/0/scale = 1.0
+cache/0/38/0/ascent = 0.0
+cache/0/38/0/descent = 0.0
+cache/0/38/0/underline_position = 0.0
+cache/0/38/0/underline_thickness = 0.0
+cache/0/38/0/scale = 1.0
+cache/0/39/0/ascent = 0.0
+cache/0/39/0/descent = 0.0
+cache/0/39/0/underline_position = 0.0
+cache/0/39/0/underline_thickness = 0.0
+cache/0/39/0/scale = 1.0
+cache/0/40/0/ascent = 0.0
+cache/0/40/0/descent = 0.0
+cache/0/40/0/underline_position = 0.0
+cache/0/40/0/underline_thickness = 0.0
+cache/0/40/0/scale = 1.0
+cache/0/41/0/ascent = 0.0
+cache/0/41/0/descent = 0.0
+cache/0/41/0/underline_position = 0.0
+cache/0/41/0/underline_thickness = 0.0
+cache/0/41/0/scale = 1.0
+cache/0/42/0/ascent = 0.0
+cache/0/42/0/descent = 0.0
+cache/0/42/0/underline_position = 0.0
+cache/0/42/0/underline_thickness = 0.0
+cache/0/42/0/scale = 1.0
+cache/0/43/0/ascent = 0.0
+cache/0/43/0/descent = 0.0
+cache/0/43/0/underline_position = 0.0
+cache/0/43/0/underline_thickness = 0.0
+cache/0/43/0/scale = 1.0
+cache/0/44/0/ascent = 0.0
+cache/0/44/0/descent = 0.0
+cache/0/44/0/underline_position = 0.0
+cache/0/44/0/underline_thickness = 0.0
+cache/0/44/0/scale = 1.0
+cache/0/45/0/ascent = 0.0
+cache/0/45/0/descent = 0.0
+cache/0/45/0/underline_position = 0.0
+cache/0/45/0/underline_thickness = 0.0
+cache/0/45/0/scale = 1.0
+cache/0/46/0/ascent = 0.0
+cache/0/46/0/descent = 0.0
+cache/0/46/0/underline_position = 0.0
+cache/0/46/0/underline_thickness = 0.0
+cache/0/46/0/scale = 1.0
+cache/0/47/0/ascent = 0.0
+cache/0/47/0/descent = 0.0
+cache/0/47/0/underline_position = 0.0
+cache/0/47/0/underline_thickness = 0.0
+cache/0/47/0/scale = 1.0
+cache/0/49/0/ascent = 0.0
+cache/0/49/0/descent = 0.0
+cache/0/49/0/underline_position = 0.0
+cache/0/49/0/underline_thickness = 0.0
+cache/0/49/0/scale = 1.0
+cache/0/50/0/ascent = 0.0
+cache/0/50/0/descent = 0.0
+cache/0/50/0/underline_position = 0.0
+cache/0/50/0/underline_thickness = 0.0
+cache/0/50/0/scale = 1.0
+cache/0/51/0/ascent = 0.0
+cache/0/51/0/descent = 0.0
+cache/0/51/0/underline_position = 0.0
+cache/0/51/0/underline_thickness = 0.0
+cache/0/51/0/scale = 1.0
+cache/0/52/0/ascent = 0.0
+cache/0/52/0/descent = 0.0
+cache/0/52/0/underline_position = 0.0
+cache/0/52/0/underline_thickness = 0.0
+cache/0/52/0/scale = 1.0
+cache/0/53/0/ascent = 0.0
+cache/0/53/0/descent = 0.0
+cache/0/53/0/underline_position = 0.0
+cache/0/53/0/underline_thickness = 0.0
+cache/0/53/0/scale = 1.0
+cache/0/54/0/ascent = 0.0
+cache/0/54/0/descent = 0.0
+cache/0/54/0/underline_position = 0.0
+cache/0/54/0/underline_thickness = 0.0
+cache/0/54/0/scale = 1.0
+cache/0/55/0/ascent = 0.0
+cache/0/55/0/descent = 0.0
+cache/0/55/0/underline_position = 0.0
+cache/0/55/0/underline_thickness = 0.0
+cache/0/55/0/scale = 1.0
+cache/0/56/0/ascent = 0.0
+cache/0/56/0/descent = 0.0
+cache/0/56/0/underline_position = 0.0
+cache/0/56/0/underline_thickness = 0.0
+cache/0/56/0/scale = 1.0
+cache/0/57/0/ascent = 0.0
+cache/0/57/0/descent = 0.0
+cache/0/57/0/underline_position = 0.0
+cache/0/57/0/underline_thickness = 0.0
+cache/0/57/0/scale = 1.0
+cache/0/58/0/ascent = 0.0
+cache/0/58/0/descent = 0.0
+cache/0/58/0/underline_position = 0.0
+cache/0/58/0/underline_thickness = 0.0
+cache/0/58/0/scale = 1.0
+cache/0/59/0/ascent = 0.0
+cache/0/59/0/descent = 0.0
+cache/0/59/0/underline_position = 0.0
+cache/0/59/0/underline_thickness = 0.0
+cache/0/59/0/scale = 1.0
+cache/0/60/0/ascent = 0.0
+cache/0/60/0/descent = 0.0
+cache/0/60/0/underline_position = 0.0
+cache/0/60/0/underline_thickness = 0.0
+cache/0/60/0/scale = 1.0
+cache/0/61/0/ascent = 0.0
+cache/0/61/0/descent = 0.0
+cache/0/61/0/underline_position = 0.0
+cache/0/61/0/underline_thickness = 0.0
+cache/0/61/0/scale = 1.0
+cache/0/62/0/ascent = 0.0
+cache/0/62/0/descent = 0.0
+cache/0/62/0/underline_position = 0.0
+cache/0/62/0/underline_thickness = 0.0
+cache/0/62/0/scale = 1.0
+cache/0/63/0/ascent = 0.0
+cache/0/63/0/descent = 0.0
+cache/0/63/0/underline_position = 0.0
+cache/0/63/0/underline_thickness = 0.0
+cache/0/63/0/scale = 1.0
+cache/0/64/0/ascent = 0.0
+cache/0/64/0/descent = 0.0
+cache/0/64/0/underline_position = 0.0
+cache/0/64/0/underline_thickness = 0.0
+cache/0/64/0/scale = 1.0
+cache/0/65/0/ascent = 0.0
+cache/0/65/0/descent = 0.0
+cache/0/65/0/underline_position = 0.0
+cache/0/65/0/underline_thickness = 0.0
+cache/0/65/0/scale = 1.0
+cache/0/66/0/ascent = 0.0
+cache/0/66/0/descent = 0.0
+cache/0/66/0/underline_position = 0.0
+cache/0/66/0/underline_thickness = 0.0
+cache/0/66/0/scale = 1.0
+cache/0/67/0/ascent = 0.0
+cache/0/67/0/descent = 0.0
+cache/0/67/0/underline_position = 0.0
+cache/0/67/0/underline_thickness = 0.0
+cache/0/67/0/scale = 1.0
+cache/0/68/0/ascent = 0.0
+cache/0/68/0/descent = 0.0
+cache/0/68/0/underline_position = 0.0
+cache/0/68/0/underline_thickness = 0.0
+cache/0/68/0/scale = 1.0
+cache/0/69/0/ascent = 0.0
+cache/0/69/0/descent = 0.0
+cache/0/69/0/underline_position = 0.0
+cache/0/69/0/underline_thickness = 0.0
+cache/0/69/0/scale = 1.0
+cache/0/70/0/ascent = 0.0
+cache/0/70/0/descent = 0.0
+cache/0/70/0/underline_position = 0.0
+cache/0/70/0/underline_thickness = 0.0
+cache/0/70/0/scale = 1.0
+cache/0/71/0/ascent = 0.0
+cache/0/71/0/descent = 0.0
+cache/0/71/0/underline_position = 0.0
+cache/0/71/0/underline_thickness = 0.0
+cache/0/71/0/scale = 1.0
+cache/0/72/0/ascent = 0.0
+cache/0/72/0/descent = 0.0
+cache/0/72/0/underline_position = 0.0
+cache/0/72/0/underline_thickness = 0.0
+cache/0/72/0/scale = 1.0
+cache/0/73/0/ascent = 0.0
+cache/0/73/0/descent = 0.0
+cache/0/73/0/underline_position = 0.0
+cache/0/73/0/underline_thickness = 0.0
+cache/0/73/0/scale = 1.0
+cache/0/74/0/ascent = 0.0
+cache/0/74/0/descent = 0.0
+cache/0/74/0/underline_position = 0.0
+cache/0/74/0/underline_thickness = 0.0
+cache/0/74/0/scale = 1.0
+cache/0/75/0/ascent = 0.0
+cache/0/75/0/descent = 0.0
+cache/0/75/0/underline_position = 0.0
+cache/0/75/0/underline_thickness = 0.0
+cache/0/75/0/scale = 1.0
+cache/0/76/0/ascent = 0.0
+cache/0/76/0/descent = 0.0
+cache/0/76/0/underline_position = 0.0
+cache/0/76/0/underline_thickness = 0.0
+cache/0/76/0/scale = 1.0
+cache/0/77/0/ascent = 0.0
+cache/0/77/0/descent = 0.0
+cache/0/77/0/underline_position = 0.0
+cache/0/77/0/underline_thickness = 0.0
+cache/0/77/0/scale = 1.0
+cache/0/78/0/ascent = 0.0
+cache/0/78/0/descent = 0.0
+cache/0/78/0/underline_position = 0.0
+cache/0/78/0/underline_thickness = 0.0
+cache/0/78/0/scale = 1.0
+cache/0/79/0/ascent = 0.0
+cache/0/79/0/descent = 0.0
+cache/0/79/0/underline_position = 0.0
+cache/0/79/0/underline_thickness = 0.0
+cache/0/79/0/scale = 1.0
+cache/0/1/0/ascent = 0.0
+cache/0/1/0/descent = 0.0
+cache/0/1/0/underline_position = 0.0
+cache/0/1/0/underline_thickness = 0.0
+cache/0/1/0/scale = 1.0
+
+[sub_resource type="FontFile" id="FontFile_xojrg"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/41/0/ascent = 0.0
+cache/0/41/0/descent = 0.0
+cache/0/41/0/underline_position = 0.0
+cache/0/41/0/underline_thickness = 0.0
+cache/0/41/0/scale = 1.0
+cache/0/39/0/ascent = 0.0
+cache/0/39/0/descent = 0.0
+cache/0/39/0/underline_position = 0.0
+cache/0/39/0/underline_thickness = 0.0
+cache/0/39/0/scale = 1.0
+cache/0/45/0/ascent = 0.0
+cache/0/45/0/descent = 0.0
+cache/0/45/0/underline_position = 0.0
+cache/0/45/0/underline_thickness = 0.0
+cache/0/45/0/scale = 1.0
+cache/0/40/0/ascent = 0.0
+cache/0/40/0/descent = 0.0
+cache/0/40/0/underline_position = 0.0
+cache/0/40/0/underline_thickness = 0.0
+cache/0/40/0/scale = 1.0
+cache/0/38/0/ascent = 0.0
+cache/0/38/0/descent = 0.0
+cache/0/38/0/underline_position = 0.0
+cache/0/38/0/underline_thickness = 0.0
+cache/0/38/0/scale = 1.0
+cache/0/46/0/ascent = 0.0
+cache/0/46/0/descent = 0.0
+cache/0/46/0/underline_position = 0.0
+cache/0/46/0/underline_thickness = 0.0
+cache/0/46/0/scale = 1.0
+
+[sub_resource type="FontFile" id="FontFile_uo7c4"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+
+[sub_resource type="FontFile" id="FontFile_fk4w4"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+
+[sub_resource type="FontFile" id="FontFile_4jvna"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+
+[sub_resource type="FontFile" id="FontFile_48uvn"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/39/0/ascent = 0.0
+cache/0/39/0/descent = 0.0
+cache/0/39/0/underline_position = 0.0
+cache/0/39/0/underline_thickness = 0.0
+cache/0/39/0/scale = 1.0
+cache/0/40/0/ascent = 0.0
+cache/0/40/0/descent = 0.0
+cache/0/40/0/underline_position = 0.0
+cache/0/40/0/underline_thickness = 0.0
+cache/0/40/0/scale = 1.0
+cache/0/38/0/ascent = 0.0
+cache/0/38/0/descent = 0.0
+cache/0/38/0/underline_position = 0.0
+cache/0/38/0/underline_thickness = 0.0
+cache/0/38/0/scale = 1.0
+cache/0/46/0/ascent = 0.0
+cache/0/46/0/descent = 0.0
+cache/0/46/0/underline_position = 0.0
+cache/0/46/0/underline_thickness = 0.0
+cache/0/46/0/scale = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yitca"]
+atlas = ExtResource("4_802gf")
+region = Rect2(53, 3, 34, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fg2ve"]
+atlas = ExtResource("4_802gf")
+region = Rect2(3, 3, 34, 28)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pdwpo"]
+texture = ExtResource("7_h1cd8")
+texture_margin_left = 11.0
+texture_margin_top = 9.0
+texture_margin_right = 11.0
+texture_margin_bottom = 12.0
+region_rect = Rect2(328, 398, 35, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqtd2"]
+atlas = ExtResource("4_802gf")
+region = Rect2(704, 205, 31, 28)
+
+[node name="Guide" type="Node2D"]
+script = ExtResource("1_hmhar")
+
+[node name="GuideList" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="Pengenalan" type="Node" parent="GuideList"]
+script = ExtResource("2_eq1t4")
+image = ExtResource("3_lgatg")
+title = "Selamat Datang di RunQuiz"
+description = "RunQuiz adalah sebuah permainan digital yang tersedia pada platform Web, Windows, dan Android."
+
+[node name="Objektif" type="Node" parent="GuideList"]
+script = ExtResource("2_eq1t4")
+image = ExtResource("3_lgatg")
+title = "Objektif Permainan"
+description = "Tujuan dari permainan RunQuiz adalah untuk [color=yellow]menjawab kuis pertanyaan sebanyak-banyaknya untuk meningkatkan level dan skor selagi pemain mencoba bertahan hidup menghindari segala musuh atau rintangan yang akan dihadapi.[/color]"
+
+[node name="MulaiBermain" type="Node" parent="GuideList"]
+script = ExtResource("2_eq1t4")
+image = ExtResource("4_uhfiq")
+title = "Mulai Bermain"
+description = "Gambar diatas adalah tampilan awal dari permainan saat pertama kali dibuka. Untuk memulai permainan silakan [color=yellow]menekan tombol 'Bermain'[/color] seperti yang ditunjukkan pada kotak bergaris merah seperti gambar diatas."
+
+[node name="InputMateri" type="Node" parent="GuideList"]
+script = ExtResource("2_eq1t4")
+image = ExtResource("4_pajtw")
+title = "Masukkan Materi/Topik Kuis"
+description = "Sebelum dapat mulai bermain [color=yellow]kamu perlu mengisi topik/materi dari kuis permainan pada kolom input[/color] yang ditunjukkan pada kotak merah pada gambar di atas. [color=yellow]Jika dibiarkan kosong maka akan menghasilkan kuis dengan topik 'pengetahuan umum'[/color]."
+
+[node name="Kontrol1" type="Node" parent="GuideList"]
+script = ExtResource("2_eq1t4")
+image = ExtResource("6_xkfdf")
+title = "Kontrol Pemain: Lompat"
+description = "Saat permainan dimulai pemain diberikan dua tombol untuk mengendalikan karakter di layar. Tombol pertama adalah lompat yang [color=yellow]digunakan untuk melompat dan menghindari rintangan[/color], ukurannya paling besar dengan ikon panah membelok ke kanan seperti yang diperlihatkan pada gambar diatas yang ditandai dengan lingkaran berwarna merah. Pemain dapat menggunakan tombol [b][color=darkgray]Spasi[/color][/b] sebagai alternatif."
+custom_font_enabled = true
+custom_font_size = 38.0
+
+[node name="Kontrol2" type="Node" parent="GuideList"]
+script = ExtResource("2_eq1t4")
+image = ExtResource("6_xkfdf")
+title = "Kontrol Pemain: Serang"
+description = "Tombol kedua adalah tombol serang yang [color=yellow]digunakan untuk menyerang musuh ketika posisi mereka dekat dengan karakter pemain[/color]. Tombol ini berbentuk lingkaran yang ditunjukkan pada lingkaran biru oleh gambar di atas. Musuh yang dapat diserang ialah [color=#8b0000]Jamur Beracun[/color], [color=#8b0000]Kelelawar[/color], dan [color=#8b0000]Penyihir[/color]. Pemain dapat menggunakan tombol [b][color=darkgray]Enter[/color][/b] sebagai alternatif."
+
+[node name="Status1" type="Node" parent="GuideList"]
+script = ExtResource("2_eq1t4")
+image = ExtResource("7_wy4uv")
+title = "Status Pemain"
+description = "Pada bagian pojok kiri atas saat bermain menunjukkan 4 informasi pemain yaitu [color=yellow]darah, level saat ini, skor yang diraih, dan jumlah koin yang dikumpulkan.[/color]"
+
+[node name="Status2" type="Node" parent="GuideList"]
+script = ExtResource("2_eq1t4")
+image = ExtResource("8_jj2li")
+title = "Status Pemain (Efek)"
+description = "Pada bagian pojok kiri bawah akan ditunjukkan [color=yellow]status efek dari item yang saat itu digunakan beserta durasi efek yang tersisa sebelum efek item tersebut habis.[/color]"
+
+[node name="Status3" type="Node" parent="GuideList"]
+script = ExtResource("2_eq1t4")
+image = ExtResource("9_r7rno")
+title = "Waktu Permainan"
+description = "Pada bagian tengah bawah layar akan ditunjukkan durasi waktu permainan dalam format menit dan detik. Waktu akan berhenti ketika pemain menekan tombol jeda dan berjalan kembali setelah keluar dari jeda. Namun, [color=yellow]waktu akan tetap berjalan saat pemain memilih item ketika naik level dan menjawab kuis[/color]."
+
+[node name="NaikLevel1" type="Node" parent="GuideList"]
+script = ExtResource("2_eq1t4")
+image = ExtResource("10_sgd8c")
+title = "Naik Level: Bendera"
+description = "Bendera adalah objek yang akan [color=yellow]muncul ketika pemain melewati setidaknya 5 rintangan[/color] yang dihadapi. Ketika melewati bendara pemain akan ditampilkan menu pilih item untuk naik level."
+
+[node name="NaikLevel2" type="Node" parent="GuideList"]
+script = ExtResource("2_eq1t4")
+image = ExtResource("10_wtonq")
+title = "Naik Level: Memilih Item"
+description = "Ketika karakter melewati bendera maka kamu akan [color=yellow]diberikan 3 item yang muncul secara acak untuk kamu pilih sebagai salah satu syarat untuk naik level[/color]. [color=yellow]Syarat kedua adalah kamu harus menjawab kuis dengan benar atau melewati kuis dengan membayarnya dengan beberapa koin.[/color] Jumlah koin yang diperlukan akan meningkat seiring bertambanya level pemain."
+custom_font_enabled = true
+custom_font_size = 40.0
+
+[node name="NaikLevel3" type="Node" parent="GuideList"]
+script = ExtResource("2_eq1t4")
+image = ExtResource("12_agyml")
+title = "Naik Level: Menjawab Kuis"
+description = "Setelah memilih untuk menjawab kuis saat memilih item maka pemain akan dihadapkan dengan [color=yellow]pertanyaan kuis yang memiliki 4 pilihan[/color] dengan [color=yellow]waktu yang diberikan untuk menjawab selama 15 detik[/color]. Apabila kamu berhasil [color=yellow]menjawab pertanyaan dengan benar maka level pemain bertambah dan item yang dipilih akan diberikan.[/color] Namun, jika kamu [color=yellow]memilih pilihan yang salah atau melewati batas waktu menjawab maka pemain tidak mendapatkan apa-apa[/color]."
+custom_font_enabled = true
+custom_font_size = 39.0
+
+[node name="MusuhPenyihir" type="Node" parent="GuideList"]
+script = ExtResource("2_eq1t4")
+image = ExtResource("12_bsqbp")
+title = "Rintangan: Penyihir"
+description = "Musuh ini memiliki serangan jarak jauh berupa [color=#8b0000]bola api yang dilontarkan ke arah pemain setiap 2 detik, darah pemain akan berkurang -1 poin jika terkena bola api atau tersentuh penyihit langsung.[/color] Jika tidak dihindari maka pemain kehilangan 1 poin darah. Penyihir dapat dikalahkan melalui serangan saat jarak pemain dekat dengan penyihir, [color=yellow]ketika dikalahkan akan memberikan +1 skor dan +1 koin[/color]."
+custom_font_enabled = true
+custom_font_size = 39.0
+
+[node name="MusuhJamur" type="Node" parent="GuideList"]
+script = ExtResource("2_eq1t4")
+image = ExtResource("11_ig8o3")
+title = "Rintangan: Jamur Beracun"
+description = "Musuh ini tidak memiliki serangan, namun [color=#8b0000]jika diserang dapat mengurangi darah pemain sebesar -1 poin[/color]. Apabila berhasil dikalahkan akan [color=yellow]memberikan +2 koin dan +2 skor kepada pemain[/color]."
+
+[node name="MusuhKelelawar" type="Node" parent="GuideList"]
+script = ExtResource("2_eq1t4")
+image = ExtResource("14_pgw3i")
+title = "Rintangan: Kelelawar"
+description = "Musuh ini akan muncul mengudara tetapi tidak memiliki serangan, [color=#8b0000]darah permain akan berkurang -1 poin ketika tersentuh kelelawar[/color]. Untuk mengalahkan kelelawar pemain perlu melakukan lompatan pada waktu yang tepat agar serangan dapat mengenai kelelawar. [color=yellow]Musuh ini memberikan +1 koin dan +1 skor ketika dikalahkan[/color]."
+custom_font_enabled = true
+
+[node name="MusuhJarum" type="Node" parent="GuideList"]
+script = ExtResource("2_eq1t4")
+image = ExtResource("12_p50ky")
+title = "Rintangan: Jebakan Jarum"
+description = "Rintangan ini harus dilewati karena tidak dapat diserang karena benda mati. Jika pemain menginjak jarum jebakan maka [color=#8b0000]pemain akan berkurang -1 poin darah.[/color]"
+
+[node name="ItemDarah" type="Node" parent="GuideList"]
+script = ExtResource("2_eq1t4")
+image = SubResource("AtlasTexture_cnatc")
+title = "Item: Darah"
+description = "Item ini akan menambah darah sebanyak 1 poin."
+custom_font_enabled = true
+custom_font_size = 46.0
+
+[node name="ItemMaxDarah" type="Node" parent="GuideList"]
+script = ExtResource("2_eq1t4")
+image = ExtResource("11_abo01")
+title = "Item: Kapasitas Darah"
+description = "Item ini akan menambah maksimal kapasitas darah sebanyak 1 poin.
+
+ [color=yellow](Item hanya tersedia saat naik level)[/color]"
+custom_font_enabled = true
+custom_font_size = 46.0
+
+[node name="ItemTameng" type="Node" parent="GuideList"]
+script = ExtResource("2_eq1t4")
+image = SubResource("AtlasTexture_jbsf4")
+title = "Item: Tameng"
+description = "Item ini memberikan kemampuan kebal terhadap semua rintangan atau serangan musuh akan yang dihadapi selama 15 detik."
+custom_font_enabled = true
+custom_font_size = 46.0
+
+[node name="ItemKoinGanda" type="Node" parent="GuideList"]
+script = ExtResource("2_eq1t4")
+image = ExtResource("12_h24u8")
+title = "Item: Koin Ganda"
+description = "Item ini memberikan kemampuan untuk mendapatkan koin dua kali lebih banyak saat menyerang musuh selama 15 detik.
+[color=yellow](Item hanya tersedia saat naik level)[/color]"
+custom_font_enabled = true
+custom_font_size = 46.0
+
+[node name="ItemLompatGanda" type="Node" parent="GuideList"]
+script = ExtResource("2_eq1t4")
+image = ExtResource("13_krip2")
+title = "Item: Lompat Ganda"
+description = "Item ini memberikan kemampuan untuk lompat sebanyak dua kali ketika di udara selama 15 detik."
+custom_font_enabled = true
+custom_font_size = 46.0
+
+[node name="UI" type="Node" parent="."]
+
+[node name="ColorMix" type="ColorRect" parent="UI"]
+material = SubResource("ShaderMaterial_abc03")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="UI"]
+custom_minimum_size = Vector2(0, 973)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -628.0
+offset_top = -448.0
+offset_right = 628.0
+offset_bottom = 448.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_vy27b")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Image" type="TextureRect" parent="UI/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+custom_minimum_size = Vector2(0, 390)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("3_lgatg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="UI/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 0.827451)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 34
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = SubResource("FontFile_efhyw")
+theme_override_font_sizes/font_size = 50
+text = "Selamat Datang di RunQuiz"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="RichTextLabel" parent="UI/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 371)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = SubResource("FontFile_xojrg")
+theme_override_fonts/mono_font = SubResource("FontFile_uo7c4")
+theme_override_fonts/italics_font = SubResource("FontFile_fk4w4")
+theme_override_fonts/bold_italics_font = SubResource("FontFile_4jvna")
+theme_override_fonts/bold_font = SubResource("FontFile_48uvn")
+theme_override_font_sizes/bold_italics_font_size = 41
+theme_override_font_sizes/italics_font_size = 41
+theme_override_font_sizes/mono_font_size = 41
+theme_override_font_sizes/normal_font_size = 41
+theme_override_font_sizes/bold_font_size = 41
+bbcode_enabled = true
+text = "RunQuiz adalah sebuah permainan digital yang tersedia pada platform Web, Windows, dan Android."
+
+[node name="BtnAnchor1" type="Control" parent="UI/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Anchor" type="Node2D" parent="UI/PanelContainer/BtnAnchor1"]
+
+[node name="LeftBtn" type="Button" parent="UI/PanelContainer/BtnAnchor1/Anchor"]
+unique_name_in_owner = true
+visible = false
+offset_left = -128.0
+offset_top = -46.0
+offset_right = -38.0
+offset_bottom = 46.0
+theme = ExtResource("2_vy27b")
+icon = SubResource("AtlasTexture_yitca")
+icon_alignment = 1
+expand_icon = true
+
+[node name="BtnAnchor2" type="Control" parent="UI/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+
+[node name="Anchor" type="Node2D" parent="UI/PanelContainer/BtnAnchor2"]
+
+[node name="RightBtn" type="Button" parent="UI/PanelContainer/BtnAnchor2/Anchor"]
+unique_name_in_owner = true
+offset_left = 45.0
+offset_top = -46.0
+offset_right = 135.0
+offset_bottom = 46.0
+theme = ExtResource("2_vy27b")
+icon = SubResource("AtlasTexture_fg2ve")
+icon_alignment = 1
+expand_icon = true
+
+[node name="LabelAnchor" type="Control" parent="UI/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="Anchor" type="Node2D" parent="UI/PanelContainer/LabelAnchor"]
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/PanelContainer/LabelAnchor/Anchor"]
+offset_left = -76.0
+offset_top = -33.5
+offset_right = 76.0
+offset_bottom = 33.5
+theme_override_styles/panel = SubResource("StyleBoxTexture_pdwpo")
+
+[node name="GuideIndex" type="Label" parent="UI/PanelContainer/LabelAnchor/Anchor/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 0.509804)
+theme_override_font_sizes/font_size = 33
+text = "1 / 21"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackBtn" type="Button" parent="UI"]
+offset_left = 75.0
+offset_top = 75.0
+offset_right = 175.0
+offset_bottom = 175.0
+theme = ExtResource("2_vy27b")
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+theme_override_constants/icon_max_width = 52
+theme_override_font_sizes/font_size = 46
+text = "
+"
+icon = SubResource("AtlasTexture_qqtd2")
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="pressed" from="UI/PanelContainer/BtnAnchor1/Anchor/LeftBtn" to="." method="left_btn_pressed"]
+[connection signal="pressed" from="UI/PanelContainer/BtnAnchor2/Anchor/RightBtn" to="." method="right_btn_pressed"]
+[connection signal="pressed" from="UI/BackBtn" to="." method="go_back"]

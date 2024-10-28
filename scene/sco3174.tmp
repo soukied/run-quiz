@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://cngch8da6sl6u"]
+
+[ext_resource type="Script" path="res://scripts/scoreboard.gd" id="1_kn2k0"]
+
+[node name="Scoreboard" type="Node2D"]
+script = ExtResource("1_kn2k0")
+
+[node name="Node" type="Node" parent="."]
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Node"]
+custom_minimum_size = Vector2(1123, 646)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -561.5
+offset_top = -323.0
+offset_right = 561.5
+offset_bottom = 323.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Node/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="SaveList" type="VBoxContainer" parent="Node/ScrollContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1

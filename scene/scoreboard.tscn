@@ -1,0 +1,113 @@
+[gd_scene load_steps=7 format=3 uid="uid://cngch8da6sl6u"]
+
+[ext_resource type="Script" path="res://scripts/scoreboard.gd" id="1_kn2k0"]
+[ext_resource type="Shader" path="res://shaders/balatro_paint.gdshader" id="2_liulp"]
+[ext_resource type="Theme" uid="uid://sabiea1hheuf" path="res://themes/rpg.tres" id="2_whn43"]
+[ext_resource type="Texture2D" uid="uid://cdwbq05caudm2" path="res://sprite/vector_blackIcons.svg" id="3_ke5al"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4y70w"]
+shader = ExtResource("2_liulp")
+shader_parameter/polar_coordinates = false
+shader_parameter/polar_center = Vector2(0.5, 0.5)
+shader_parameter/polar_zoom = 1.0
+shader_parameter/polar_repeat = 1.0
+shader_parameter/spin_rotation = null
+shader_parameter/spin_speed = 14.0
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/colour_1 = Color(0.530824, 0.657745, 0.798652, 1)
+shader_parameter/colour_2 = null
+shader_parameter/colour_3 = Color(0, 0, 0, 1)
+shader_parameter/contrast = 1.0
+shader_parameter/spin_amount = 0.36
+shader_parameter/pixel_filter = 700.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nkpin"]
+atlas = ExtResource("3_ke5al")
+region = Rect2(704, 205, 31, 28)
+
+[node name="Scoreboard" type="Node2D"]
+script = ExtResource("1_kn2k0")
+
+[node name="Node" type="Node" parent="."]
+
+[node name="BG" type="Node" parent="Node"]
+
+[node name="ColorMix" type="ColorRect" parent="Node/BG"]
+material = SubResource("ShaderMaterial_4y70w")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Node"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -665.5
+offset_top = -398.5
+offset_right = 665.5
+offset_bottom = 398.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_whn43")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Node/PanelContainer"]
+custom_minimum_size = Vector2(1123, 646)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Node/PanelContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="SaveList" type="VBoxContainer" parent="Node/PanelContainer/ScrollContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="BackBtn" type="Button" parent="Node"]
+offset_left = 75.0
+offset_top = 75.0
+offset_right = 175.0
+offset_bottom = 175.0
+theme = ExtResource("2_whn43")
+theme_override_constants/icon_max_width = 52
+theme_override_font_sizes/font_size = 46
+text = "
+"
+icon = SubResource("AtlasTexture_nkpin")
+icon_alignment = 1
+expand_icon = true
+
+[node name="NoSaveLabel" type="Label" parent="Node"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -33.5
+offset_right = 20.0
+offset_bottom = 33.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_whn43")
+theme_override_colors/font_color = Color(0, 0, 0, 0.576471)
+theme_override_font_sizes/font_size = 78
+text = "Tidak ada data pemain
+ yang tersimpan."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Node/BackBtn" to="." method="go_back"]

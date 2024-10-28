@@ -1,0 +1,112 @@
+[gd_scene load_steps=14 format=3 uid="uid://bjrtglhfudx80"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_40u3n"]
+[ext_resource type="Shader" uid="uid://dmknu5jcr70ys" path="res://effects/color_tint.res" id="2_f1sqm"]
+[ext_resource type="Texture2D" uid="uid://dnvau6ui58x0o" path="res://sprite/bat/Bat1.png" id="2_nwtrk"]
+[ext_resource type="Texture2D" uid="uid://delj7g0ri1mwa" path="res://sprite/bat/Bat2.png" id="3_0mckm"]
+[ext_resource type="Texture2D" uid="uid://h7rscavbujgo" path="res://sprite/bat/Bat3.png" id="4_en23l"]
+[ext_resource type="Texture2D" uid="uid://dhkghcn3k6xch" path="res://sprite/bat/Bat4.png" id="5_3acc6"]
+[ext_resource type="Script" path="res://scripts/enemies/bat.gd" id="6_3e2g2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4d5l7"]
+resource_local_to_scene = true
+shader = ExtResource("2_f1sqm")
+shader_parameter/enabled = false
+shader_parameter/color = Color(1, 1, 1, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2fm1o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_nwtrk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0mckm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_en23l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_3acc6")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 9.0
+}]
+
+[sub_resource type="Animation" id="Animation_t8awr"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_6jcnr"]
+resource_name = "blink"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_on72j"]
+_data = {
+"RESET": SubResource("Animation_t8awr"),
+"blink": SubResource("Animation_6jcnr")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tvtgq"]
+radius = 8.42105
+height = 16.8421
+
+[node name="BatEnemy" type="Node2D" groups=["enemy", "entity"]]
+z_index = -1
+position = Vector2(856, 520)
+scale = Vector2(5.7, 5.7)
+script = ExtResource("1_40u3n")
+enemy_type = 3
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_4d5l7")
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_2fm1o")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.388909
+flip_h = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_on72j")
+}
+
+[node name="Area" type="Area2D" parent="." groups=["enemy_area"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area"]
+position = Vector2(-3.09944e-06, 2.86102e-06)
+shape = SubResource("CapsuleShape2D_tvtgq")
+
+[node name="Bat" type="Node" parent="."]
+script = ExtResource("6_3e2g2")
+
+[connection signal="area_entered" from="Area" to="." method="on_area_entered"]
+[connection signal="area_exited" from="Area" to="." method="on_area_exited"]

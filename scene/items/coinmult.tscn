@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://bb5gg8qdmiljo"]
+
+[ext_resource type="Script" path="res://scripts/item.gd" id="1_hvne4"]
+[ext_resource type="Texture2D" uid="uid://dwu7gkps7u3i5" path="res://sprite/coin_mult.png" id="2_dhl3m"]
+[ext_resource type="Script" path="res://scripts/items/coinmult.gd" id="3_72ye7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fqfjv"]
+radius = 10.5882
+
+[node name="CoinMultItem" type="Node2D" groups=["entity", "item"]]
+z_index = -1
+scale = Vector2(4, 4)
+script = ExtResource("1_hvne4")
+texture = ExtResource("2_dhl3m")
+item_name = "Koin Ganda"
+item_description = "Pemain mendapatkan koin 2 kali lebih banyak selama 15 detik."
+type = 4
+
+[node name="Sprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+texture = ExtResource("2_dhl3m")
+
+[node name="Area2D" type="Area2D" parent="." groups=["item_area"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+shape = SubResource("CircleShape2D_fqfjv")
+
+[node name="Effect" type="Node" parent="."]
+script = ExtResource("3_72ye7")
+
+[connection signal="on_recieve" from="." to="Effect" method="on_recieve"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

@@ -1,0 +1,332 @@
+[gd_scene load_steps=22 format=3 uid="uid://ph6r6y4d18r5"]
+
+[ext_resource type="Script" path="res://scripts/runner_ui.gd" id="1_2jxdb"]
+[ext_resource type="Theme" uid="uid://dgjnn6bjwnfq7" path="res://themes/default.tres" id="2_y2bqu"]
+[ext_resource type="Texture2D" uid="uid://baq4rinvyni6p" path="res://sprite/coins.png" id="3_f22xu"]
+[ext_resource type="Texture2D" uid="uid://bg0yeeecnp2vy" path="res://sprite/flat-dark.svg" id="3_gd5si"]
+[ext_resource type="Script" path="res://scripts/touch_cont_btn.gd" id="4_71dot"]
+[ext_resource type="Texture2D" uid="uid://b88oe6u2ocfsv" path="res://sprite/boots_wings.png" id="4_edo3x"]
+[ext_resource type="Texture2D" uid="uid://durk104dhqfps" path="res://sprite/fantasy-ui-borders.svg" id="4_m2sg0"]
+[ext_resource type="Texture2D" uid="uid://dpqmjq3gi4efd" path="res://sprite/Sheet.png" id="5_rbva8"]
+[ext_resource type="Texture2D" uid="uid://dwu7gkps7u3i5" path="res://sprite/coin_mult.png" id="6_ffmu2"]
+[ext_resource type="Theme" uid="uid://sabiea1hheuf" path="res://themes/rpg.tres" id="10_62uql"]
+[ext_resource type="Script" path="res://scripts/timer_label.gd" id="11_lsry4"]
+
+[sub_resource type="Theme" id="Theme_ostiw"]
+
+[sub_resource type="Gradient" id="Gradient_xan5q"]
+offsets = PackedFloat32Array(0.0126051)
+colors = PackedColorArray(0.14749, 0.14749, 0.14749, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_m5vo3"]
+gradient = SubResource("Gradient_xan5q")
+
+[sub_resource type="Gradient" id="Gradient_hu2w7"]
+colors = PackedColorArray(0.368627, 0, 0, 1, 0.808555, 0, 0.185151, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bqjon"]
+gradient = SubResource("Gradient_hu2w7")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0.26731)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hypag"]
+texture = ExtResource("4_m2sg0")
+texture_margin_left = 20.0
+texture_margin_top = 20.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
+expand_margin_left = 19.0
+expand_margin_top = 2.0
+expand_margin_right = 19.0
+expand_margin_bottom = 2.0
+region_rect = Rect2(924, 40, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j45st"]
+atlas = ExtResource("3_gd5si")
+region = Rect2(390, 520, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wk4l6"]
+atlas = ExtResource("3_gd5si")
+region = Rect2(750, 520, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o76jj"]
+atlas = ExtResource("5_rbva8")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7s08v"]
+atlas = ExtResource("3_gd5si")
+region = Rect2(80, 340, 48, 48)
+
+[node name="RunnerUI" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_2jxdb")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.154876, 0.154876, 0.154876, 0.698039)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 80.0
+offset_top = 64.0
+offset_right = 304.0
+offset_bottom = 197.0
+theme = ExtResource("2_y2bqu")
+
+[node name="LevelLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_y2bqu")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+text = "Level : 1"
+
+[node name="ScoreLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_y2bqu")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+text = "Skor : 0"
+
+[node name="CoinSect" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="CoinIco" type="TextureRect" parent="VBoxContainer/CoinSect"]
+custom_minimum_size = Vector2(55, 55)
+layout_mode = 2
+texture = ExtResource("3_f22xu")
+
+[node name="CoinLabel" type="Label" parent="VBoxContainer/CoinSect"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+text = " x 0"
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = 80.0
+offset_top = 16.0
+offset_right = 904.0
+offset_bottom = 48.0
+theme = SubResource("Theme_ostiw")
+max_value = 5.0
+value = 1.0
+nine_patch_stretch = true
+texture_under = SubResource("GradientTexture1D_m5vo3")
+texture_progress = SubResource("GradientTexture2D_bqjon")
+
+[node name="HealthLabel" type="Label" parent="HealthBar"]
+unique_name_in_owner = true
+show_behind_parent = true
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.682353)
+theme_override_font_sizes/font_size = 26
+text = "1 / 3"
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="HealthBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_hypag")
+
+[node name="JumpButton" type="TextureButton" parent="."]
+texture_filter = 6
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -456.0
+offset_top = -281.0
+offset_right = -206.0
+offset_bottom = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+focus_mode = 0
+texture_normal = SubResource("AtlasTexture_j45st")
+stretch_mode = 0
+script = ExtResource("4_71dot")
+
+[node name="AttackButton" type="TextureButton" parent="."]
+texture_filter = 2
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -229.0
+offset_top = -414.0
+offset_right = -29.0
+offset_bottom = -214.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.8, 0.8)
+focus_mode = 0
+texture_normal = SubResource("AtlasTexture_wk4l6")
+stretch_mode = 0
+flip_h = true
+script = ExtResource("4_71dot")
+
+[node name="EffectsContainer" type="MarginContainer" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 36.0
+offset_top = -130.0
+offset_right = 420.0
+grow_vertical = 0
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="PlayerEffects" type="HBoxContainer" parent="EffectsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 27
+
+[node name="ItemStat1" type="Control" parent="EffectsContainer/PlayerEffects"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="JumpBoostEffect" type="TextureRect" parent="EffectsContainer/PlayerEffects/ItemStat1"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.458824)
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+offset_right = 100.0
+offset_bottom = 100.0
+texture = ExtResource("4_edo3x")
+
+[node name="Timeout" type="Label" parent="EffectsContainer/PlayerEffects/ItemStat1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 35
+text = "13.00
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ItemStat2" type="Control" parent="EffectsContainer/PlayerEffects"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="ShieldEffect" type="TextureRect" parent="EffectsContainer/PlayerEffects/ItemStat2"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.458824)
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+offset_right = 100.0
+offset_bottom = 100.0
+texture = SubResource("AtlasTexture_o76jj")
+
+[node name="Timeout" type="Label" parent="EffectsContainer/PlayerEffects/ItemStat2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 35
+text = "8.21"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ItemStat3" type="Control" parent="EffectsContainer/PlayerEffects"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="CoinMultEffect" type="TextureRect" parent="EffectsContainer/PlayerEffects/ItemStat3"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.458824)
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+offset_right = 100.0
+offset_bottom = 100.0
+texture = ExtResource("6_ffmu2")
+
+[node name="Timeout" type="Label" parent="EffectsContainer/PlayerEffects/ItemStat3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 35
+text = "3.21"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PauseButton" type="TextureButton" parent="."]
+modulate = Color(0.62, 0.62, 0.62, 0.7)
+custom_minimum_size = Vector2(80, 80)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -146.0
+offset_top = 24.0
+offset_right = -66.0
+offset_bottom = 104.0
+grow_horizontal = 0
+focus_mode = 0
+texture_normal = SubResource("AtlasTexture_7s08v")
+stretch_mode = 0
+script = ExtResource("4_71dot")
+
+[node name="TimerLabel" type="Label" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -26.0
+offset_top = -106.0
+offset_right = 26.0
+offset_bottom = -39.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("10_62uql")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 64
+text = "0:31"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("11_lsry4")
+
+[connection signal="button_down" from="JumpButton" to="." method="on_jump"]
+[connection signal="button_down" from="AttackButton" to="." method="on_attack"]
+[connection signal="pressed" from="PauseButton" to="." method="pause_game"]

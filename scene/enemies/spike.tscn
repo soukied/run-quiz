@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://ryhsief5jvoj"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_y5pwy"]
+[ext_resource type="Texture2D" uid="uid://b1apxj0njey5d" path="res://sprite/spike.png" id="2_vnqxl"]
+[ext_resource type="Script" path="res://scripts/enemies/spike.gd" id="3_y5uwt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vjevn"]
+size = Vector2(30.8772, 7.01754)
+
+[node name="SpikeEnemy" type="Node2D" groups=["enemy", "entity"]]
+z_index = -1
+position = Vector2(840, 520)
+scale = Vector2(5.7, 5.7)
+script = ExtResource("1_y5pwy")
+enemy_type = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-12.4912, -0.701754)
+scale = Vector2(0.5, 0.587719)
+texture = ExtResource("2_vnqxl")
+hframes = 4
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-4.07018, -0.701754)
+scale = Vector2(0.5, 0.587719)
+texture = ExtResource("2_vnqxl")
+hframes = 4
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(4.35088, -0.701754)
+scale = Vector2(0.5, 0.587719)
+texture = ExtResource("2_vnqxl")
+hframes = 4
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(12.7719, -0.701754)
+scale = Vector2(0.5, 0.587719)
+texture = ExtResource("2_vnqxl")
+hframes = 4
+
+[node name="Area" type="Area2D" parent="." groups=["enemy_area"]]
+position = Vector2(-1.26317, -7.7193)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area"]
+position = Vector2(1.40352, 7.7193)
+shape = SubResource("RectangleShape2D_vjevn")
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("3_y5uwt")
+
+[connection signal="area_entered" from="Area" to="." method="on_area_entered"]
+[connection signal="area_exited" from="Area" to="." method="on_area_exited"]

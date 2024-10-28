@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://csqwnessvtnqb"]
+
+[ext_resource type="Script" path="res://scripts/item.gd" id="1_v0hah"]
+[ext_resource type="Texture2D" uid="uid://dpqmjq3gi4efd" path="res://sprite/Sheet.png" id="2_pq3yu"]
+[ext_resource type="Script" path="res://scripts/items/health.gd" id="3_wnrtt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ek678"]
+atlas = ExtResource("2_pq3yu")
+region = Rect2(80, 48, 16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fqfjv"]
+radius = 10.5882
+
+[node name="HealthItem" type="Node2D" groups=["entity", "item"]]
+z_index = -1
+scale = Vector2(4, 4)
+script = ExtResource("1_v0hah")
+texture = SubResource("AtlasTexture_ek678")
+item_name = "Darah"
+item_description = "Menambah 1 poin darah."
+
+[node name="Sprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+texture = SubResource("AtlasTexture_ek678")
+
+[node name="Area2D" type="Area2D" parent="." groups=["item_area"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+shape = SubResource("CircleShape2D_fqfjv")
+
+[node name="Effect" type="Node" parent="."]
+script = ExtResource("3_wnrtt")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

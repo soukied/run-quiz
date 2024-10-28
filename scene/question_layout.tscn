@@ -1,0 +1,182 @@
+[gd_scene load_steps=13 format=3 uid="uid://m6hiuk67klp2"]
+
+[ext_resource type="Script" path="res://scripts/question_layout.gd" id="1_sq8my"]
+[ext_resource type="FontFile" uid="uid://b7n3striliwmu" path="res://fonts/morrisroman.ttf" id="2_l126k"]
+[ext_resource type="Theme" uid="uid://sabiea1hheuf" path="res://themes/rpg.tres" id="4_1us7e"]
+[ext_resource type="Texture2D" uid="uid://dto3uu8otnvlc" path="res://sprite/uipack_rpg_vector.svg" id="4_y8ryp"]
+[ext_resource type="AudioStream" uid="uid://bpxybg4d8jt0i" path="res://audio/correct-choice.mp3" id="5_gkl04"]
+[ext_resource type="AudioStream" uid="uid://c0ej3ry1eyam4" path="res://audio/incorrect-choice.mp3" id="6_g7r5j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhglr"]
+atlas = ExtResource("4_y8ryp")
+region = Rect2(328, 398, 35, 38)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_adbfn"]
+texture = SubResource("AtlasTexture_qhglr")
+
+[sub_resource type="Theme" id="Theme_xlakd"]
+Label/font_sizes/font_size = 51
+Label/fonts/font = ExtResource("2_l126k")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_adbfn")
+
+[sub_resource type="Animation" id="Animation_g0a0i"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_uwdvi"]
+resource_name = "popup"
+length = 0.2
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_efc6s"]
+_data = {
+"RESET": SubResource("Animation_g0a0i"),
+"popup": SubResource("Animation_uwdvi")
+}
+
+[node name="QuestionLayout" type="CanvasLayer"]
+process_mode = 3
+layer = 10
+script = ExtResource("1_sq8my")
+timer = 16
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.215686, 0.215686, 0.215686, 0.517647)
+
+[node name="QuizContainer" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -636.0
+offset_top = -420.0
+offset_right = 636.0
+offset_bottom = 414.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_1us7e")
+
+[node name="Control" type="Control" parent="QuizContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Node2D" type="Node2D" parent="QuizContainer/Control"]
+position = Vector2(-40, 0)
+
+[node name="ClockTimer" type="PanelContainer" parent="QuizContainer/Control/Node2D"]
+custom_minimum_size = Vector2(80, 80)
+offset_top = -47.0
+offset_right = 80.0
+offset_bottom = 33.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_xlakd")
+
+[node name="TimerLabel" type="Label" parent="QuizContainer/Control/Node2D/ClockTimer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 0.564706)
+text = "15"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="QuizContainer"]
+clip_contents = true
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="QuizContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="QuizContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(1000, 300)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+horizontal_scroll_mode = 0
+
+[node name="Label" type="Label" parent="QuizContainer/MarginContainer/VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1000, 300)
+layout_mode = 2
+theme_override_font_sizes/font_size = 45
+text = "My name is Adhya Adam Sulthan"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="QuizContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 25
+
+[node name="GridContainer" type="GridContainer" parent="QuizContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("4_1us7e")
+theme_override_constants/h_separation = 51
+theme_override_constants/v_separation = 41
+columns = 2
+
+[node name="Option0" type="Button" parent="QuizContainer/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(194, 105)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 47
+text = "Opsi 1"
+autowrap_mode = 3
+
+[node name="Option1" type="Button" parent="QuizContainer/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(194, 105)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 47
+text = "Opsi 2"
+autowrap_mode = 3
+
+[node name="Option2" type="Button" parent="QuizContainer/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(194, 105)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 47
+text = "Opsi 3"
+autowrap_mode = 3
+
+[node name="Option3" type="Button" parent="QuizContainer/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(194, 105)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 47
+text = "Opsi 4"
+autowrap_mode = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_efc6s")
+}
+
+[node name="CorrectAudio" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_gkl04")
+
+[node name="IncorrectAudio" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_g7r5j")
